@@ -220,31 +220,12 @@
 <span class="tag">commons-lang3-3</span><span class="class">.1</span><span class="class">.jar</span>          【<span class="tag">struts</span>对<span class="tag">java</span><span class="class">.lang</span>包的扩展】
 <span class="tag">freemarker-2</span><span class="class">.3</span><span class="class">.19</span><span class="class">.jar</span>          【<span class="tag">struts</span>的标签模板库<span class="tag">jar</span>文件】
 <span class="tag">javassist-3</span><span class="class">.11</span><span class="class">.0</span><span class="class">.GA</span><span class="class">.jar</span>        【<span class="tag">struts</span>对字节码的处理相关<span class="tag">jar</span>】
-</code></pre><p>2.配置web.xml</p>
-<pre><code>&lt;<span class="attribute">filter</span>&gt;
-    &lt;<span class="attribute">filter</span>-name&gt;struts2&lt;/<span class="attribute">filter</span>-name&gt;
-    &lt;<span class="attribute">filter</span>-class&gt;org<span class="class">.apache</span><span class="class">.struts2</span><span class="class">.dispatcher</span><span class="class">.ng</span><span class="class">.filter</span><span class="class">.StrutsPrepareAndExecuteFilter</span>&lt;/<span class="attribute">filter</span>-class&gt;
-&lt;/<span class="attribute">filter</span>&gt;
-&lt;<span class="attribute">filter</span>-mapping&gt;
-    &lt;<span class="attribute">filter</span>-name&gt;struts2&lt;/<span class="attribute">filter</span>-name&gt;
-    &lt;url-pattern&gt;<span class="comment">/*&lt;/url-pattern&gt;
-&lt;/filter-mapping&gt;</span>
-</code></pre><p>3.开发Action</p>
-<pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">ActionSupport</span> {</span>
-<span class="comment">// 处理请求</span>
-public <span class="type">String</span> execute() <span class="keyword">throws</span> <span class="type">Exception</span> {}
-}
-</code></pre><p>4.配置action :  src/struts.xml</p>
-<pre><code>&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;
-&lt;!<span class="type">DOCTYPE</span> struts <span class="string">PUBLIC"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"</span> <span class="string">"http://struts.apache.org/dtds/struts-2.0.dtd"</span>&gt;
-&lt;struts&gt;
-       &lt;package name=<span class="string">"xxxx"</span> extends=<span class="string">"struts-default"</span>&gt;
-        &lt;action name=<span class="string">"xxxx"</span> class=<span class="string">"cn.xx.xxxx"</span> <span class="keyword">method</span>=<span class="string">"execute"</span>&gt;
-            &lt;<span class="literal">result</span> name=<span class="string">"success"</span>&gt;/success.jsp&lt;/<span class="literal">result</span>&gt;
-        &lt;/action&gt;
-       &lt;/package&gt; 
-&lt;/struts&gt;
 </code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/coding/struts2devprocess.html#more">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
