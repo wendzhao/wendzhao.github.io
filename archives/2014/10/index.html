@@ -61,20 +61,15 @@
 </head>
 
 <body>
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
-
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://static.ixirong.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
   <div class="container one-column  page-archive ">
     <div class="headband"></div>
 
     <div id="header" class="header">
+
+    <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
+
       <div class="header-inner">
         <h1 class="site-meta">
   <span class="logo-line-before"><i></i></span>
@@ -211,11 +206,12 @@
   
 
 
-        </div>
 
-        
+          
+         
+        </div>        
       </div>
-
+               
 
       
   
@@ -326,7 +322,7 @@
     <div class="back-to-top"></div>
   </div>
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <!-- <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script> -->
 
   
   
@@ -342,7 +338,7 @@
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
+  <!-- <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script> -->
   
 
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
@@ -352,7 +348,6 @@
 
 
 
-  <script type="text/javascript" src="/js/search-toggle.js"></script>
 
   
   
@@ -362,9 +357,10 @@
   
 
 
-  <script type="text/javascript">
+   <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
     $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
         displaySidebar();
       }
     });
@@ -375,6 +371,18 @@
   
 
   
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3ead386e7e220c59beb7bd3505261981";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
   
 
 </body>
