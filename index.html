@@ -211,8 +211,7 @@
 
       
         
-          <ol>
-<li><p>引入jar文件</p>
+          <p>1.引入jar文件</p>
 <pre><code><span class="tag">commons-fileupload-1</span><span class="class">.2</span><span class="class">.2</span><span class="class">.jar</span>    【文件上传相关包】
 <span class="tag">commons-io-2</span><span class="class">.0</span><span class="class">.1</span><span class="class">.jar</span>
 <span class="tag">struts2-core-2</span><span class="class">.3</span><span class="class">.4</span><span class="class">.1</span><span class="class">.jar</span>       【<span class="tag">struts2</span>核心功能包】
@@ -221,10 +220,7 @@
 <span class="tag">commons-lang3-3</span><span class="class">.1</span><span class="class">.jar</span>          【<span class="tag">struts</span>对<span class="tag">java</span><span class="class">.lang</span>包的扩展】
 <span class="tag">freemarker-2</span><span class="class">.3</span><span class="class">.19</span><span class="class">.jar</span>          【<span class="tag">struts</span>的标签模板库<span class="tag">jar</span>文件】
 <span class="tag">javassist-3</span><span class="class">.11</span><span class="class">.0</span><span class="class">.GA</span><span class="class">.jar</span>        【<span class="tag">struts</span>对字节码的处理相关<span class="tag">jar</span>】
-</code></pre></li>
-</ol>
-<ol>
-<li><p>配置web.xml</p>
+</code></pre><p>2.配置web.xml</p>
 <pre><code>&lt;<span class="attribute">filter</span>&gt;
     &lt;<span class="attribute">filter</span>-name&gt;struts2&lt;/<span class="attribute">filter</span>-name&gt;
     &lt;<span class="attribute">filter</span>-class&gt;org<span class="class">.apache</span><span class="class">.struts2</span><span class="class">.dispatcher</span><span class="class">.ng</span><span class="class">.filter</span><span class="class">.StrutsPrepareAndExecuteFilter</span>&lt;/<span class="attribute">filter</span>-class&gt;
@@ -233,14 +229,12 @@
     &lt;<span class="attribute">filter</span>-name&gt;struts2&lt;/<span class="attribute">filter</span>-name&gt;
     &lt;url-pattern&gt;<span class="comment">/*&lt;/url-pattern&gt;
 &lt;/filter-mapping&gt;</span>
-</code></pre></li>
-<li><p>开发Action</p>
+</code></pre><p>3.开发Action</p>
 <pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">ActionSupport</span> {</span>
 <span class="comment">// 处理请求</span>
 public <span class="type">String</span> execute() <span class="keyword">throws</span> <span class="type">Exception</span> {}
 }
-</code></pre></li>
-<li><p>配置action :  src/struts.xml</p>
+</code></pre><p>4.配置action :  src/struts.xml</p>
 <pre><code>&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;
 &lt;!<span class="type">DOCTYPE</span> struts <span class="string">PUBLIC"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"</span> <span class="string">"http://struts.apache.org/dtds/struts-2.0.dtd"</span>&gt;
 &lt;struts&gt;
@@ -250,9 +244,7 @@ public <span class="type">String</span> execute() <span class="keyword">throws</
         &lt;/action&gt;
        &lt;/package&gt; 
 &lt;/struts&gt;
-</code></pre></li>
-</ol>
-
+</code></pre>
         
       
     </div>
