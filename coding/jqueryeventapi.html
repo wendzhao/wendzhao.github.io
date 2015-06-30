@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="白噪音,雨声," />
+  <meta name="keywords" content="jQuery," />
 
 
 
@@ -57,7 +57,7 @@
 
 
 
-  <title> 让自己置身雨中---白噪音Rainy Day // Wend </title>
+  <title> jQuery常用事件API // Wend </title>
 </head>
 
 <body>
@@ -168,7 +168,7 @@
           
           
             
-              让自己置身雨中---白噪音Rainy Day
+              jQuery常用事件API
             
           
         </h1>
@@ -176,14 +176,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2014-07-31
+          发表于 2015-06-30
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/tech/">tech</a>
+              <a href="/categories/coding/">coding</a>
 
               
               
@@ -196,8 +196,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/tech/whitenoise.html#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="tech/whitenoise.html"></span>
+            <a href="/coding/jqueryeventapi.html#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="coding/jqueryeventapi.html"></span>
             </a>
           </span>
           
@@ -211,14 +211,22 @@
       
 
       
-        <blockquote>
-<p>白噪声或白噪音，是一种功率频谱密度为常数的随机信号或随机过程。换句话说，此信号在各个频段上的功率是一样的，由于白光是由各种频率（颜色）的单色光混合而成，因而此信号的这种具有平坦功率谱的性质被称作是“白色的”，此信号也因此被称作白噪声。一些专家学者称“白噪音”实际上是大自然给予我们的一个声音暗示，它可以起到辅助治疗一些神经系统疾病的作用。<br><a id="more"></a><br>一些经常受到环境噪音污染的人群会利用白噪音来帮助他们恢复工作效率，像一些大学生或办公室工作人员会利用白噪音来降低那些施工噪音对他们集中力产生的不良影响。白噪音甚至被公认为对于精神分散疾病、耳鸣、听觉过敏症以及多动症等神经系统疾病来说，是一种有效的“声音化妆处理”治疗。还有一些人利用白噪音来把一些可以打断他们正常睡眠的声音弱化。不仅是那些要在白天睡觉晚上工作的夜班族利用白噪音来削减白天有可能打扰到他们睡眠的一切声音。还有那些夜晚铁道附近的轰隆声，以及狗叫声，甚至你配偶的打鼾声等等都可以被白噪音的“屏蔽”功能所弱化。这样一来，你完全可以好好的睡上一觉，无论是处在怎样的一个睡眠环境。（百度百科）</p>
-</blockquote>
-<p>由此可见，雨声等白噪音能够让人平静。因此花费了一个 上午的时间制作了这个<a href="http://ezkuma.com/rain/" target="_blank" rel="external">网页</a>（菜单栏 工具→白噪音雨声），可以在工作的时候听，冥想的时候听，更可以在睡觉之前听一会，让自己心思平静，放松下来。</p>
-<p>总之，你值得一试！更多想法提交以及问题反馈，你可以在下面留言。</p>
-<p>P.S. 本人感觉听了可以在工作的时候能让你更加集中注意力并且感受到轻松的环境，戴耳机效果更好！</p>
-<p><em>Android版本已经在开发之中，敬请期待！</em></p>
-
+        <p><strong>目的：对web页面（HTML/JSP）进行事件触发，完成特殊效果的处理</strong></p>
+<pre><code>window.onload：在浏览器加载web页面时触发，可以写多次onload事件，但后者覆盖前者
+ready：在浏览器加载web页面时触发，可以写多次ready事件，不会后者覆盖前者，依次从上向下执行，我们常用$(函数)简化
+       ready和onload同时存在时，二者都会触发执行，ready快于onload
+<span class="operator"><span class="keyword">change</span>：当内容改变时触发
+focus：焦点获取
+<span class="keyword">select</span>：选中所有的文本值
+keyup/keydown/keypress：演示在IE和Firefox中获取<span class="keyword">event</span>对象的不同
+mousemove：在指定区域中不断移动触发
+mouseover：鼠标移入时触发
+mouseout：鼠标移出时触发
+submit：在提交表单时触发，<span class="literal">true</span>表示提交到后台，<span class="literal">false</span>表示不提交到后台
+click：单击触发
+dblclick：双击触发
+blur：焦点失去</span>
+</code></pre>
       
     </div>
 
@@ -226,9 +234,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/白噪音/"> #白噪音 </a>
-          
-            <a href="/tags/雨声/"> #雨声 </a>
+            <a href="/tags/jQuery/"> #jQuery </a>
           
         </div>
       
@@ -237,13 +243,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/coding/rainyday.html">RainyDay---Android版本发布</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/tech/taobaoass.html">分享一个旧版 淘宝手机助手</a>
+              <a href="/coding/jquerymethodapi.html">jQuery常用方法API</a>
             
           </div>
         </div>
@@ -258,10 +262,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="tech/whitenoise.html"
-     data-title="让自己置身雨中---白噪音Rainy Day"
+        <div class="ds-share flat" data-thread-key="coding/jqueryeventapi.html"
+     data-title="jQuery常用事件API"
      data-content=""
-     data-url="http://wendzhao.github.io/tech/whitenoise.html">
+     data-url="http://wendzhao.github.io/coding/jqueryeventapi.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -282,8 +286,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="tech/whitenoise.html"
-               data-title="让自己置身雨中---白噪音Rainy Day" data-url="http://wendzhao.github.io/tech/whitenoise.html">
+          <div class="ds-thread" data-thread-key="coding/jqueryeventapi.html"
+               data-title="jQuery常用事件API" data-url="http://wendzhao.github.io/coding/jqueryeventapi.html">
           </div>
         
       </div>

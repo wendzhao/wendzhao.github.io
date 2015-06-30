@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="白噪音,雨声," />
+  <meta name="keywords" content="jQuery," />
 
 
 
@@ -57,7 +57,7 @@
 
 
 
-  <title> 让自己置身雨中---白噪音Rainy Day // Wend </title>
+  <title> jQuery常用方法API // Wend </title>
 </head>
 
 <body>
@@ -168,7 +168,7 @@
           
           
             
-              让自己置身雨中---白噪音Rainy Day
+              jQuery常用方法API
             
           
         </h1>
@@ -176,14 +176,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2014-07-31
+          发表于 2015-06-30
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/tech/">tech</a>
+              <a href="/categories/coding/">coding</a>
 
               
               
@@ -196,8 +196,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/tech/whitenoise.html#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="tech/whitenoise.html"></span>
+            <a href="/coding/jquerymethodapi.html#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="coding/jquerymethodapi.html"></span>
             </a>
           </span>
           
@@ -211,14 +211,46 @@
       
 
       
-        <blockquote>
-<p>白噪声或白噪音，是一种功率频谱密度为常数的随机信号或随机过程。换句话说，此信号在各个频段上的功率是一样的，由于白光是由各种频率（颜色）的单色光混合而成，因而此信号的这种具有平坦功率谱的性质被称作是“白色的”，此信号也因此被称作白噪声。一些专家学者称“白噪音”实际上是大自然给予我们的一个声音暗示，它可以起到辅助治疗一些神经系统疾病的作用。<br><a id="more"></a><br>一些经常受到环境噪音污染的人群会利用白噪音来帮助他们恢复工作效率，像一些大学生或办公室工作人员会利用白噪音来降低那些施工噪音对他们集中力产生的不良影响。白噪音甚至被公认为对于精神分散疾病、耳鸣、听觉过敏症以及多动症等神经系统疾病来说，是一种有效的“声音化妆处理”治疗。还有一些人利用白噪音来把一些可以打断他们正常睡眠的声音弱化。不仅是那些要在白天睡觉晚上工作的夜班族利用白噪音来削减白天有可能打扰到他们睡眠的一切声音。还有那些夜晚铁道附近的轰隆声，以及狗叫声，甚至你配偶的打鼾声等等都可以被白噪音的“屏蔽”功能所弱化。这样一来，你完全可以好好的睡上一觉，无论是处在怎样的一个睡眠环境。（百度百科）</p>
-</blockquote>
-<p>由此可见，雨声等白噪音能够让人平静。因此花费了一个 上午的时间制作了这个<a href="http://ezkuma.com/rain/" target="_blank" rel="external">网页</a>（菜单栏 工具→白噪音雨声），可以在工作的时候听，冥想的时候听，更可以在睡觉之前听一会，让自己心思平静，放松下来。</p>
-<p>总之，你值得一试！更多想法提交以及问题反馈，你可以在下面留言。</p>
-<p>P.S. 本人感觉听了可以在工作的时候能让你更加集中注意力并且感受到轻松的环境，戴耳机效果更好！</p>
-<p><em>Android版本已经在开发之中，敬请期待！</em></p>
-
+        <p><strong>DOM标准规则下的jQuery常用API，注意：以下方法均由jQuery对象调用</strong></p>
+<pre><code><span class="function"><span class="title">each</span><span class="params">()</span></span>：是jQuery中专用于迭代数组的方法，参数为一个处理函数，this表示当前需要迭代的js对象
+<span class="function"><span class="title">append</span><span class="params">()</span></span>：追加到父元素之后
+<span class="function"><span class="title">prepend</span><span class="params">()</span></span>：追加到父元素之前
+<span class="function"><span class="title">after</span><span class="params">()</span></span>：追加到兄弟元素之后
+<span class="function"><span class="title">before</span><span class="params">()</span></span>：追加到兄弟元素之前 
+<span class="function"><span class="title">attr</span><span class="params">(name)</span></span>：获取属性值
+<span class="function"><span class="title">attr</span><span class="params">(name,value)</span></span>：给符合条件的标签添加key-value属性对 
+$(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：创建元素，属性，文本    
+<span class="function"><span class="title">remove</span><span class="params">()</span></span>：删除自已及其后代节点  
+<span class="function"><span class="title">val</span><span class="params">()</span></span>：获取value属性的值
+<span class="function"><span class="title">val</span><span class="params">(<span class="string">""</span>)</span></span>：设置value属性值为<span class="string">""</span>空串，相当于清空
+<span class="function"><span class="title">text</span><span class="params">()</span></span>：获取HTML或XML标签之间的值
+<span class="function"><span class="title">text</span><span class="params">(<span class="string">""</span>)</span></span>：设置HTML或XML标签之间的值为<span class="string">""</span>空串 
+<span class="function"><span class="title">clone</span><span class="params">()</span></span>：只复制样式，不复制行为
+<span class="function"><span class="title">clone</span><span class="params">(true)</span></span>：既复制样式，又复制行为
+<span class="function"><span class="title">replaceWith</span><span class="params">()</span></span>：替代原来的节点
+<span class="function"><span class="title">removeAttr</span><span class="params">()</span></span>：删除已存在的属性
+<span class="function"><span class="title">addClass</span><span class="params">()</span></span>：增加已存在的样式
+<span class="function"><span class="title">removeClass</span><span class="params">()</span></span>：删除已存在的样式
+<span class="function"><span class="title">hasClass</span><span class="params">()</span></span>：判断标签是否有指定的样式，true表示有样式，false表示无样式
+<span class="function"><span class="title">toggleClass</span><span class="params">()</span></span>：如果标签有样式就删除，否则增加样式
+<span class="function"><span class="title">offset</span><span class="params">()</span></span>：获取对象的<span class="attribute">left</span>和<span class="attribute">top</span>坐标
+<span class="function"><span class="title">offset</span><span class="params">({top:<span class="number">100</span>,left:<span class="number">200</span>})</span></span>：将对象直接定位到指定的<span class="attribute">left</span>和<span class="attribute">top</span>坐标
+<span class="function"><span class="title">width</span><span class="params">()</span></span>：获取对象的宽
+<span class="function"><span class="title">width</span><span class="params">(<span class="number">300</span>)</span></span>：设置对象的宽
+<span class="function"><span class="title">height</span><span class="params">()</span></span>：获取对象的高
+<span class="function"><span class="title">height</span><span class="params">(<span class="number">500</span>)</span></span>：设置对象的高
+<span class="function"><span class="title">children</span><span class="params">()</span></span>：只查询子节点，不含后代节点
+<span class="function"><span class="title">next</span><span class="params">()</span></span>：下一下兄弟节点
+<span class="function"><span class="title">prev</span><span class="params">()</span></span>：上一下兄弟节点
+<span class="function"><span class="title">siblings</span><span class="params">()</span></span>：上下兄弟节点
+<span class="function"><span class="title">show</span><span class="params">()</span></span>：显示对象
+<span class="function"><span class="title">hide</span><span class="params">()</span></span>：隐藏对象
+<span class="function"><span class="title">fadeIn</span><span class="params">()</span></span>：淡入显示对象
+<span class="function"><span class="title">fadeOut</span><span class="params">()</span></span>：淡出隐藏对象
+<span class="function"><span class="title">slideUp</span><span class="params">()</span></span>：向上滑动
+<span class="function"><span class="title">slideDown</span><span class="params">()</span></span>：向下滑动
+<span class="function"><span class="title">slideToggle</span><span class="params">()</span></span>：上下切换滑动，速度快点
+</code></pre>
       
     </div>
 
@@ -226,9 +258,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/白噪音/"> #白噪音 </a>
-          
-            <a href="/tags/雨声/"> #雨声 </a>
+            <a href="/tags/jQuery/"> #jQuery </a>
           
         </div>
       
@@ -237,13 +267,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/coding/rainyday.html">RainyDay---Android版本发布</a>
+              <a href="/coding/jqueryeventapi.html">jQuery常用事件API</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/tech/taobaoass.html">分享一个旧版 淘宝手机助手</a>
+              <a href="/coding/struts2devprocess.html">Struts2开发流程</a>
             
           </div>
         </div>
@@ -258,10 +288,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="tech/whitenoise.html"
-     data-title="让自己置身雨中---白噪音Rainy Day"
+        <div class="ds-share flat" data-thread-key="coding/jquerymethodapi.html"
+     data-title="jQuery常用方法API"
      data-content=""
-     data-url="http://wendzhao.github.io/tech/whitenoise.html">
+     data-url="http://wendzhao.github.io/coding/jquerymethodapi.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -282,8 +312,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="tech/whitenoise.html"
-               data-title="让自己置身雨中---白噪音Rainy Day" data-url="http://wendzhao.github.io/tech/whitenoise.html">
+          <div class="ds-thread" data-thread-key="coding/jquerymethodapi.html"
+               data-title="jQuery常用方法API" data-url="http://wendzhao.github.io/coding/jquerymethodapi.html">
           </div>
         
       </div>
