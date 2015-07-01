@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="Struts," />
+  <meta name="keywords" content="jQuery," />
 
 
 
@@ -57,7 +57,7 @@
 
 
 
-  <title> Struts2开发流程 // Wend </title>
+  <title> Struts2拦截器实例—完整登陆权限验证 // Wend </title>
 </head>
 
 <body>
@@ -168,7 +168,7 @@
           
           
             
-              Struts2开发流程
+              Struts2拦截器实例—完整登陆权限验证
             
           
         </h1>
@@ -176,7 +176,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-06-29
+          发表于 2015-07-01
         </span>
 
         
@@ -196,8 +196,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/coding/struts2devprocess.html#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="coding/struts2devprocess.html"></span>
+            <a href="/coding/strutsinterceptor.html#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="coding/strutsinterceptor.html"></span>
             </a>
           </span>
           
@@ -211,39 +211,183 @@
       
 
       
-        <p>1.引入jar文件</p>
-<pre><code><span class="tag">commons-fileupload-1</span><span class="class">.2</span><span class="class">.2</span><span class="class">.jar</span>    【文件上传相关包】
-<span class="tag">commons-io-2</span><span class="class">.0</span><span class="class">.1</span><span class="class">.jar</span>
-<span class="tag">struts2-core-2</span><span class="class">.3</span><span class="class">.4</span><span class="class">.1</span><span class="class">.jar</span>       【<span class="tag">struts2</span>核心功能包】
-<span class="tag">xork-core-2</span><span class="class">.3</span><span class="class">.4</span><span class="class">.1</span><span class="class">.jar</span>          【<span class="tag">Xwork</span>核心包】
-<span class="tag">ognl-3</span><span class="class">.0</span><span class="class">.5</span><span class="class">.jar</span>                    【<span class="tag">Ognl</span>表达式功能支持表】
-<span class="tag">commons-lang3-3</span><span class="class">.1</span><span class="class">.jar</span>          【<span class="tag">struts</span>对<span class="tag">java</span><span class="class">.lang</span>包的扩展】
-<span class="tag">freemarker-2</span><span class="class">.3</span><span class="class">.19</span><span class="class">.jar</span>          【<span class="tag">struts</span>的标签模板库<span class="tag">jar</span>文件】
-<span class="tag">javassist-3</span><span class="class">.11</span><span class="class">.0</span><span class="class">.GA</span><span class="class">.jar</span>        【<span class="tag">struts</span>对字节码的处理相关<span class="tag">jar</span>】
+        <p>先写两个jsp页面:</p>
+<p>1.login.jsp</p>
+<pre><code>&lt;body&gt;
+       &lt;<span class="keyword">form</span> method=<span class="string">"post"</span> action=<span class="string">"${pageContext.request.contextPath }/user_login.action"</span>&gt;
+           用户名：&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"admin.userName"</span>&gt;&lt;<span class="keyword">br</span>/&gt;
+           密码：&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"admin.pwd"</span>&gt;&lt;<span class="keyword">br</span>/&gt;
+           &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> value=<span class="string">"登陆"</span>&gt;&lt;<span class="keyword">br</span>/&gt;
+       &lt;/<span class="keyword">form</span>&gt;
+&lt;/body&gt;
 </code></pre><a id="more"></a>
-<p>2.配置web.xml</p>
-<pre><code>&lt;<span class="attribute">filter</span>&gt;
-    &lt;<span class="attribute">filter</span>-name&gt;struts2&lt;/<span class="attribute">filter</span>-name&gt;
-    &lt;<span class="attribute">filter</span>-class&gt;org<span class="class">.apache</span><span class="class">.struts2</span><span class="class">.dispatcher</span><span class="class">.ng</span><span class="class">.filter</span><span class="class">.StrutsPrepareAndExecuteFilter</span>&lt;/<span class="attribute">filter</span>-class&gt;
-&lt;/<span class="attribute">filter</span>&gt;
-&lt;<span class="attribute">filter</span>-mapping&gt;
-    &lt;<span class="attribute">filter</span>-name&gt;struts2&lt;/<span class="attribute">filter</span>-name&gt;
-    &lt;url-pattern&gt;<span class="comment">/*&lt;/url-pattern&gt;
-&lt;/filter-mapping&gt;</span>
-</code></pre><p>3.开发Action</p>
-<pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">ActionSupport</span> {</span>
-<span class="comment">// 处理请求</span>
-public <span class="type">String</span> execute() <span class="keyword">throws</span> <span class="type">Exception</span> {}
+<p>2.list.jsp</p>
+<pre><code><span class="xml"><span class="tag">&lt;<span class="title">body</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>欢迎你，${userInfo.userName }<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">table</span> <span class="attribute">align</span>=<span class="value">"center"</span> <span class="attribute">border</span>=<span class="value">"1"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">td</span>&gt;</span>序号<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">td</span>&gt;</span>编号<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">td</span>&gt;</span>用户名<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">td</span>&gt;</span>密码<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+      </span>&lt;%-<span class="ruby">-<span class="variable">@taglib</span> uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span> -</span>-%&gt;<span class="xml">
+      <span class="comment">&lt;!-- 用struts标签迭代数据 --&gt;</span>
+      </span>&lt;%<span class="ruby"><span class="variable">@taglib</span> uri=<span class="string">"/struts-tags"</span> prefix=<span class="string">"s"</span> </span>%&gt;<span class="xml">
+      <span class="tag">&lt;<span class="title">s:iterator</span> <span class="attribute">var</span>=<span class="value">"admin"</span> <span class="attribute">value</span>=<span class="value">"#request.listAdmin"</span> <span class="attribute">status</span>=<span class="value">"st"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+              <span class="tag">&lt;<span class="title">td</span>&gt;</span>
+                  <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#st.count"</span>/&gt;</span>
+              <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+              <span class="tag">&lt;<span class="title">td</span>&gt;</span>
+                  <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#admin.id"</span>/&gt;</span>
+              <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+              <span class="tag">&lt;<span class="title">td</span>&gt;</span>
+                  <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#admin.userName"</span>/&gt;</span>
+              <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+              <span class="tag">&lt;<span class="title">td</span>&gt;</span>
+                  <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#admin.pwd"</span>/&gt;</span>
+              <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">s:iterator</span>&gt;</span>
+
+  <span class="tag">&lt;/<span class="title">table</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span></span>
+</code></pre><p>3.UserAction.java</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>{
+
+<span class="comment">// ---------1. 封装请求数据-----------</span>
+<span class="keyword">private</span> Admin admin;
+<span class="function"><span class="keyword">public</span> Admin <span class="title">getAdmin</span><span class="params">()</span> </span>{
+    <span class="keyword">return</span> admin;
 }
-</code></pre><p>4.配置action :  src/struts.xml</p>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAdmin</span><span class="params">(Admin admin)</span> </span>{
+    <span class="keyword">this</span>.admin = admin;
+}
+<span class="comment">// ---------2. 调用的Service-----------</span>
+<span class="keyword">private</span> AdminService adminService = <span class="keyword">new</span> AdminService();
+
+<span class="comment">// 登陆</span>
+<span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">()</span> </span>{
+    <span class="keyword">try</span> {
+        Admin userInfo = adminService.login(admin);
+        <span class="comment">// 判断</span>
+        <span class="keyword">if</span> (userInfo == <span class="keyword">null</span>){
+            <span class="comment">// 登陆失败</span>
+            <span class="keyword">return</span> <span class="string">"input"</span>;
+        }
+        <span class="comment">// 登陆成功：数据保存在session中</span>
+        ActionContext.getContext().getSession().put(<span class="string">"userInfo"</span>, userInfo);
+
+        <span class="comment">// 登陆成功</span>
+        <span class="keyword">return</span> <span class="string">"loginSuccess"</span>;
+    } <span class="keyword">catch</span> (Exception e) {
+        <span class="keyword">return</span> ERROR;
+    }
+}
+
+<span class="comment">// 列表</span>
+<span class="function"><span class="keyword">public</span> String <span class="title">list</span><span class="params">()</span> </span>{
+    <span class="keyword">try</span> {
+        <span class="comment">// 查询全部</span>
+        List&lt;Admin&gt; list = adminService.getAll();
+        <span class="comment">// 保存到request</span>
+        ActionContext.getContext().getContextMap().put(<span class="string">"listAdmin"</span>, list);
+        <span class="keyword">return</span> <span class="string">"list"</span>;
+    } <span class="keyword">catch</span> (Exception e) {
+        <span class="keyword">return</span> ERROR;
+    }
+}
+
+<span class="function"><span class="keyword">public</span> String <span class="title">add</span><span class="params">()</span> </span>{
+    <span class="keyword">return</span> <span class="keyword">null</span>;
+}
+
+
+}
+</code></pre><p>4.自定义拦截器</p>
+<pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">UserCheckInterceptor</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">AbstractInterceptor</span>{</span>
+
+<span class="comment">/**
+ * 拦截器业务处理方法
+ */</span>
+public <span class="type">String</span> intercept(<span class="type">ActionInvocation</span> invocation) <span class="keyword">throws</span> <span class="type">Exception</span> {
+    <span class="comment">// 拿到当前执行的方法名：判断，只有当前方法名不是login,就进行验证</span>
+
+    <span class="comment">// 获取ActionContext对象</span>
+    <span class="type">ActionContext</span> ac = invocation.getInvocationContext();
+
+    <span class="comment">// 获取action的代理对象</span>
+     <span class="type">ActionProxy</span> proxy = invocation.getProxy();
+     <span class="comment">// 获取当前执行的方法名</span>
+     <span class="type">String</span> methodName = proxy.getMethod();
+     <span class="comment">// 判断</span>
+     <span class="keyword">if</span> (!<span class="string">"login"</span>.equals(methodName)) {
+         <span class="comment">// 先获取当前登陆的用户</span>
+         <span class="type">Object</span> obj = ac.getSession().get(<span class="string">"userInfo"</span>);
+         <span class="keyword">if</span> (obj == <span class="literal">null</span>) {
+             <span class="comment">// 没有登陆</span>
+             <span class="keyword">return</span> <span class="string">"input"</span>;
+         } <span class="keyword">else</span> {
+             <span class="comment">// 当前用户有登陆</span>
+             <span class="keyword">return</span> invocation.invoke();
+         }
+     } <span class="keyword">else</span> {
+         <span class="comment">// 说明当前用户正在登陆</span>
+         <span class="keyword">return</span> invocation.invoke();
+     }
+}
+
+}
+</code></pre><p>5.配置拦截器</p>
 <pre><code>&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;
-&lt;!<span class="type">DOCTYPE</span> struts <span class="string">PUBLIC"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"</span> <span class="string">"http://struts.apache.org/dtds/struts-2.0.dtd"</span>&gt;
+&lt;!<span class="type">DOCTYPE</span> struts <span class="type">PUBLIC</span>
+<span class="string">"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</span>
+<span class="string">"http://struts.apache.org/dtds/struts-2.3.dtd"</span>&gt;
+
 &lt;struts&gt;
-       &lt;package name=<span class="string">"xxxx"</span> extends=<span class="string">"struts-default"</span>&gt;
-        &lt;action name=<span class="string">"xxxx"</span> class=<span class="string">"cn.xx.xxxx"</span> <span class="keyword">method</span>=<span class="string">"execute"</span>&gt;
-            &lt;<span class="literal">result</span> name=<span class="string">"success"</span>&gt;/success.jsp&lt;/<span class="literal">result</span>&gt;
-        &lt;/action&gt;
-       &lt;/package&gt; 
+&lt;package name=<span class="string">"user"</span> extends=<span class="string">"struts-default"</span>&gt;
+
+    &lt;!-- 【拦截器配置】 --&gt;
+    &lt;interceptors&gt;
+        &lt;interceptor name=<span class="string">"loginCheck"</span> class=<span class="string">"UserCheckInterceptor"</span>&gt;&lt;/interceptor&gt;
+        &lt;interceptor-stack name=<span class="string">"myStack"</span>&gt;
+            &lt;interceptor-<span class="keyword">ref</span> name=<span class="string">"defaultStack"</span>&gt;&lt;/interceptor-<span class="keyword">ref</span>&gt;
+            &lt;interceptor-<span class="keyword">ref</span> name=<span class="string">"loginCheck"</span>&gt;&lt;/interceptor-<span class="keyword">ref</span>&gt;
+        &lt;/interceptor-stack&gt;
+    &lt;/interceptors&gt;
+    &lt;!-- 【执行拦截器:第一种写法： 当前包下所有的acntion都执行myStack栈】
+    &lt;default-interceptor-<span class="keyword">ref</span> name=<span class="string">"myStack"</span>&gt;&lt;/default-interceptor-<span class="keyword">ref</span>&gt;
+     --&gt;
+
+    &lt;!-- 全局配置 --&gt;
+    &lt;global-results&gt;
+        &lt;<span class="literal">result</span> name=<span class="string">"error"</span>&gt;/error.jsp&lt;/<span class="literal">result</span>&gt;
+    &lt;/global-results&gt;
+
+
+        &lt;!--第二种写法： 只是在这一个<span class="type">Action</span>中执行myStack栈 
+        &lt;interceptor-<span class="keyword">ref</span> name=<span class="string">"defaultStackt"</span>&gt;&lt;/interceptor-<span class="keyword">ref</span>&gt;
+        &lt;interceptor-<span class="keyword">ref</span> name=<span class="string">"loginCheck"</span>&gt;&lt;/interceptor-<span class="keyword">ref</span>&gt;
+        --&gt;
+
+        &lt;!-- 第三种写法：执行用户栈(与第二种写法一样， 只在当前aciton中执行自定义栈) --&gt;
+        &lt;interceptor-<span class="keyword">ref</span> name=<span class="string">"myStack"</span>&gt;&lt;/interceptor-<span class="keyword">ref</span>&gt;
+
+
+
+        &lt;!-- <span class="number">1</span>. 登陆失败 --&gt;
+        &lt;<span class="literal">result</span> name=<span class="string">"input"</span>&gt;/login.jsp&lt;/<span class="literal">result</span>&gt;
+
+        &lt;!-- <span class="number">2</span>. 登陆成功 --&gt;
+        &lt;<span class="literal">result</span> name=<span class="string">"loginSuccess"</span> <span class="keyword">type</span>=<span class="string">"redirectAction"</span>&gt;user_list&lt;/<span class="literal">result</span>&gt;
+
+        &lt;!-- <span class="number">3</span>. 列表展示 --&gt;
+        &lt;<span class="literal">result</span> name=<span class="string">"list"</span>&gt;/<span class="type">WEB</span>-<span class="type">INF</span>/list.jsp&lt;/<span class="literal">result</span>&gt;
+
+    &lt;/action&gt;
+
+&lt;/package&gt;
 &lt;/struts&gt;
 </code></pre>
       
@@ -253,7 +397,7 @@ public <span class="type">String</span> execute() <span class="keyword">throws</
       
         <div class="post-tags">
           
-            <a href="/tags/Struts/"> #Struts </a>
+            <a href="/tags/jQuery/"> #jQuery </a>
           
         </div>
       
@@ -262,13 +406,11 @@ public <span class="type">String</span> execute() <span class="keyword">throws</
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/coding/jquerymethodapi.html">jQuery常用方法API</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/coding/kumaruler.html">生活应用----KumaRuler轻松熊尺子（Android）</a>
+              <a href="/coding/jqueryeventapi.html">jQuery常用事件API</a>
             
           </div>
         </div>
@@ -283,10 +425,10 @@ public <span class="type">String</span> execute() <span class="keyword">throws</
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="coding/struts2devprocess.html"
-     data-title="Struts2开发流程"
+        <div class="ds-share flat" data-thread-key="coding/strutsinterceptor.html"
+     data-title="Struts2拦截器实例—完整登陆权限验证"
      data-content=""
-     data-url="http://wendzhao.github.io/coding/struts2devprocess.html">
+     data-url="http://wendzhao.github.io/coding/strutsinterceptor.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -307,8 +449,8 @@ public <span class="type">String</span> execute() <span class="keyword">throws</
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="coding/struts2devprocess.html"
-               data-title="Struts2开发流程" data-url="http://wendzhao.github.io/coding/struts2devprocess.html">
+          <div class="ds-thread" data-thread-key="coding/strutsinterceptor.html"
+               data-title="Struts2拦截器实例—完整登陆权限验证" data-url="http://wendzhao.github.io/coding/strutsinterceptor.html">
           </div>
         
       </div>

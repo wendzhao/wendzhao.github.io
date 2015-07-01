@@ -170,6 +170,96 @@
           
           
             
+              <a class="post-title-link" href="/tech/qqmusicapi.html">
+                QQ音乐的各种相关API
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2014-04-17
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/tech/">tech</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/tech/qqmusicapi.html#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="tech/qqmusicapi.html"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>基本上论坛里做在线音乐的都在用百度的API，进来发现百度的API不仅歌曲的质量不可以保证，而且返回信息里面只有URL，没有一些相关的属性信息。所以就想方设法弄到了QQ音乐的API</p>
+<p>已经用xCode尝试过并且可行的API：<br>★搜索音乐（歌词）<br><a href="http://shopcgi.qqmusic.qq.com/fcgi-bin/shopsearch.fcg?value=歌曲名&amp;artist=歌手名&amp;type=qry_song&amp;out=json&amp;page_no=页码&amp;page_record_num=单页记录数量">http://shopcgi.qqmusic.qq.com/fcgi-bin/shopsearch.fcg?value=歌曲名&amp;artist=歌手名&amp;type=qry_song&amp;out=json&amp;page_no=页码&amp;page_record_num=单页记录数量</a><br>这个网上搜索不到的，自己用fiddler抓出来的，会返回一个json，注意的是返回的json的key没有用引号引起来而且需要对URL本身和返回的内容使用gb2312编（解）码<br>看这样一个例子：</p>
+<pre><code><span class="built_in">NSString</span> *title=<span class="string">@"记得"</span>;
+<span class="built_in">NSString</span> *artist=<span class="string">@"林俊杰"</span>;
+<span class="comment">//-使用歌名和歌手执行搜索</span>
+<span class="built_in">NSString</span> *searchURLString=[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"http://shopcgi.qqmusic.qq.com/fcgi-bin/shopsearch.fcg?value=%@&amp;artist=%@&amp;type=qry_song&amp;out=json&amp;page_no=%i&amp;page_record_num=%i"</span>,title,artist,<span class="number">1</span>,<span class="number">3</span>];
+searchURLString=[searchURLString stringByAddingPercentEscapesUsingEncoding:<span class="built_in">NSGB2312StringEndoding</span>];
+<span class="built_in">NSString</span> *searchResult=[<span class="built_in">NSString</span> stringWithContentsOfURL:[<span class="built_in">NSURL</span> URLWithString:searchURLString] encoding:<span class="built_in">NSGB2312StringEndoding</span> error:<span class="literal">nil</span>];
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,searchResult);
+</code></pre><p>就会得到这样的不标准json，之后的步骤简单的就说下，截取searchCallBack()中间的内容，对key进行加引号，然后就可以用json解码框架来解码<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/tech/qqmusicapi.html#more">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/life/vfpsysc.html">
                 VFP2010秋实验素材
               </a>
@@ -484,83 +574,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/life/xnkl.html">
-                新年快乐
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2014-01-31
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/life/">life</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/life/xnkl.html#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="life/xnkl.html"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>新年快乐~祝看到这篇blog的小伙伴在新的一年里幸福好运，马上有钱，马上开心~</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -599,7 +612,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -57,7 +57,7 @@
 
 
 
-  <title> 分类: notice // Wend </title>
+  <title> 归档 // Wend </title>
 </head>
 
 <body>
@@ -71,7 +71,7 @@
   </div>
 <![endif]-->
 
-  <div class="container one-column ">
+  <div class="container one-column  page-archive ">
     <div class="headband"></div>
 
     <div id="header" class="header">
@@ -157,14 +157,31 @@
           
 
   <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        notice
-        <small>分类</small>
-      </h2>
-    </div>
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 29 篇日志。 继续努力。
+    </span>
 
     
+
+      
+      
+      
+
+      
+        
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
+        </div>
+      
+      
+
       
 
   <div class="post post-type-normal">
@@ -172,30 +189,8 @@
 
       <div class="post-title">
         
-            <a class="post-title-link" href="/notice/firstte.html">
-              第一篇在Typecho上写的文章
-            </a>
-        
-      </div>
-
-      <div class="post-meta">
-        <span class="post-time"> 08-14 </span>
-      </div>
-
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal">
-    <div class="post-header">
-
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/notice/pansou.html">
-              网盘搜索神器---KUMA网盘搜索
+            <a class="post-title-link" href="/coding/strutsinterceptor.html">
+              Struts2拦截器实例—完整登陆权限验证
             </a>
         
       </div>
@@ -208,51 +203,9 @@
   </div>
 
 
-    
-      
-
-  <div class="post post-type-normal">
-    <div class="post-header">
-
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/notice/duoshuo.html">
-              启用多说评论插件
-            </a>
-        
-      </div>
-
-      <div class="post-meta">
-        <span class="post-time"> 05-31 </span>
-      </div>
-
-    </div>
-  </div>
-
 
     
-      
 
-  <div class="post post-type-normal">
-    <div class="post-header">
-
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/notice/2048.html">
-              庆祝最火游戏2048上线
-            </a>
-        
-      </div>
-
-      <div class="post-meta">
-        <span class="post-time"> 04-17 </span>
-      </div>
-
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -402,6 +355,12 @@
   <script type="text/javascript" src="/js/search-toggle.js"></script>
 
   
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
+
 
   <script type="text/javascript">
     $(document).ready(function () {
