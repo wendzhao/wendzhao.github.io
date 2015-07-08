@@ -704,5 +704,16 @@ searchURLString=[searchURLString stringByAddingPercentEscapesUsingEncoding:<span
   
   
 
+  
+  <!-- lazyload -->
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+      <script type="text/javascript">
+        jQuery(function() {          
+            jQuery("#posts img").lazyload({
+              placeholder:"http://www.arao.me/loading.gif",  
+                effect:"fadeIn"
+              });
+            });
+    </script>   
 </body>
 </html>
