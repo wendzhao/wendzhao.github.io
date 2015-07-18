@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="el表达式,list," />
+  <meta name="keywords" content="AJAX,JSON,jQuery,号码归属地," />
 
 
 
@@ -57,7 +57,7 @@
 
 
 
-  <title> EL表达式取List集合中的元素值 // Wend </title>
+  <title> 利用jQuery之AJAX获取网上api得到的JSON数据（号码归属地实例） // Wend </title>
 </head>
 
 <body>
@@ -168,7 +168,7 @@
           
           
             
-              EL表达式取List集合中的元素值
+              利用jQuery之AJAX获取网上api得到的JSON数据（号码归属地实例）
             
           
         </h1>
@@ -176,7 +176,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-07-05
+          发表于 2015-07-18
         </span>
 
         
@@ -196,8 +196,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/coding/elgetvalue.html#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="coding/elgetvalue.html"></span>
+            <a href="/coding/jqueryjsonphone.html#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="coding/jqueryjsonphone.html"></span>
             </a>
           </span>
           
@@ -211,52 +211,86 @@
       
 
       
-        <p>开发环境：</p>
-<ul>
-<li>Struts2</li>
-<li>MySQL数据库</li>
-</ul>
-<h5 id="1-连接数据库中做select操作的代码，我是直接让其返回一个list集合，集合中为object数组">1.连接数据库中做select操作的代码，我是直接让其返回一个list集合，集合中为object数组</h5><pre><code>public <span class="built_in">List</span>&lt;<span class="built_in">Object</span>[]&gt; dbSelect(<span class="built_in">String</span> sql)
-</code></pre><h5 id="2-之后配置struts，可以参见我的前几篇博文">2.之后配置struts，可以参见我的前几篇博文</h5><a id="more"></a>
-<h5 id="3-编写Action">3.编写Action</h5><pre><code>参考：
-<span class="keyword">public</span> String execute() throws <span class="keyword">Exception</span> {
-    String sql=<span class="string">"select distinct NAME from user"</span>;
-    DBService dbService =<span class="keyword">new</span> DBService();
-    <span class="keyword">List</span>&lt;Object[]&gt; <span class="keyword">list</span> = <span class="keyword">new</span> ArrayList&lt;Object[]&gt;();
-    <span class="keyword">list</span> = dbService.dbSelect(sql);
-    HttpServletRequest request= ServletActionContext.getRequest();
-    <span class="comment">//直接将list对象放入request域中</span>
-    request.setAttribute(<span class="string">"name"</span>, <span class="keyword">list</span>);
-    <span class="keyword">return</span> SUCCESS;
-};
-</code></pre><h5 id="4-JSP页面取值部分">4.JSP页面取值部分</h5><ul>
-<li><p>首先引入jstl </p>
-<p>  &lt;%@ taglib prefix=”c” uri=”<a href="http://java.sun.com/jsp/jstl/core" target="_blank" rel="external">http://java.sun.com/jsp/jstl/core</a>“ %&gt;</p>
-</li>
-<li><p>取值</p>
-<pre><code><span class="tag">&lt;<span class="title">table</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">td</span>&gt;</span>姓名<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">c:forEach</span> <span class="attribute">items</span>=<span class="value">"${name}"</span> <span class="attribute">var</span>=<span class="value">"item"</span> <span class="attribute">varStatus</span>=<span class="value">"status"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
-            <span class="tag">&lt;<span class="title">td</span>&gt;</span>${item[0] }<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
-        <span class="tag">&lt;/<span class="title">c:forEach</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">table</span>&gt;</span>
-</code></pre></li>
-</ul>
-<p>附：Map取值</p>
-<pre><code><span class="subst">&lt;%</span>
-<span class="built_in">Map</span><span class="subst">&lt;</span><span class="built_in">String</span>,<span class="built_in">String</span><span class="subst">&gt;</span> <span class="built_in">map</span> <span class="subst">=</span> <span class="literal">new</span> HashMap();
-<span class="built_in">map</span><span class="built_in">.</span>put(<span class="string">"a"</span>,<span class="string">"測"</span>);
-<span class="built_in">map</span><span class="built_in">.</span>put(<span class="string">"b"</span>,<span class="string">"試"</span>);
-request<span class="built_in">.</span>setAttribute(<span class="string">"map"</span>,<span class="built_in">map</span>); 
-<span class="subst">%&gt;</span>
+        <p>现目前网上的公开api非常多，我们完全可以合理利用这些资源。接下来就以百度的API Store（<a href="http://apistore.baidu.com/）中号码归属地为例。" target="_blank" rel="external">http://apistore.baidu.com/）中号码归属地为例。</a><br><img src="http://ezkuma.com/images/phonecheck.jpg" alt="电话查询"><br><a id="more"></a></p>
+<p>Java主程序：</p>
+<pre><code>public class find extends <span class="type">ActionSupport</span> {
 
-<span class="subst">&lt;</span>c:forEach <span class="built_in">var</span><span class="subst">=</span><span class="string">"item"</span> items<span class="subst">=</span><span class="string">"${map}"</span><span class="subst">&gt;</span>
-    ${item<span class="built_in">.</span>key} <span class="subst">&gt;</span> ${item<span class="built_in">.</span>value} <span class="subst">&lt;</span>br<span class="subst">/</span><span class="subst">&gt;</span>
-<span class="subst">&lt;</span>/c:forEach<span class="subst">&gt;</span>
+public <span class="type">String</span> execute() throws <span class="type">Exception</span> {
+    <span class="type">String</span> httpUrl = <span class="string">"http://apis.baidu.com/apistore/mobilephoneservice/mobilephone"</span>;
+    <span class="type">BufferedReader</span> reader = null;
+    <span class="type">String</span> <span class="literal">result</span> = null;
+    <span class="type">StringBuffer</span> sbf = new <span class="type">StringBuffer</span>();
+    <span class="type">HttpServletRequest</span> request = <span class="type">ServletActionContext</span>.getRequest();
+    <span class="type">String</span> tel = request.getParameter(<span class="string">"tel"</span>);
+    <span class="type">String</span> httpArg = <span class="string">"tel="</span> + tel;
+    httpUrl = httpUrl + <span class="string">"?"</span> + httpArg;
+    <span class="type">System</span>.<span class="keyword">out</span>.println(httpUrl);
+    <span class="keyword">try</span> {
+        <span class="type">URL</span> url = new <span class="type">URL</span>(httpUrl);
+        <span class="type">HttpURLConnection</span> connection = (<span class="type">HttpURLConnection</span>) url
+                .openConnection();
+        connection.setRequestMethod(<span class="string">"GET"</span>);
+        // 填入apikey到<span class="type">HTTP</span> header
+        connection.setRequestProperty(<span class="string">"apikey"</span>, <span class="string">"fa50389ac03c8e14cb027a351e093f32"</span>);
+        connection.connect();
+        <span class="type">InputStream</span> <span class="keyword">is</span> = connection.getInputStream();
+        reader = new <span class="type">BufferedReader</span>(new <span class="type">InputStreamReader</span>(<span class="keyword">is</span>, <span class="string">"UTF-8"</span>));
+        <span class="type">String</span> strRead = null;
+        <span class="keyword">while</span> ((strRead = reader.readLine()) != null) {
+            sbf.append(strRead);
+            sbf.append(<span class="string">"\r\n"</span>);
+        }
+        reader.close();
+        <span class="literal">result</span> = sbf.toString();
+    } catch (<span class="type">Exception</span> e) {
+        e.printStackTrace();
+    }
+    <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="literal">result</span>);
+    <span class="type">HttpServletResponse</span> response = <span class="type">ServletActionContext</span>.getResponse();
+    response.setContentType(<span class="string">"application/json;charset=UTF-8"</span>);
+    <span class="type">PrintWriter</span> pw = response.getWriter();
+    pw.write(<span class="literal">result</span>);
+    pw.flush();
+    pw.close();
+    <span class="keyword">return</span> null;
+}
+}
+</code></pre><p>Struts2配置：</p>
+<pre><code>&lt;struts&gt;
+&lt;package name=<span class="string">"findPhone"</span> extends=<span class="string">"struts-default"</span> namespace=<span class="string">"/"</span>&gt;
+    &lt;action name=<span class="string">"find"</span> class=<span class="string">"com.ezkuma.findCity.find"</span> <span class="keyword">method</span>=<span class="string">"execute"</span>&gt;
+
+    &lt;/action&gt;
+&lt;/package&gt;
+</code></pre><p></p>
+<p>主页面代码：</p>
+<pre><code><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"phone"</span>&gt;</span> 
+<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">id</span>=<span class="value">"btn"</span> <span class="attribute">value</span>=<span class="value">"查询"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">br</span>/&gt;</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"show"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+        $(<span class="string">"#btn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+            <span class="keyword">var</span> phone = $(<span class="string">"#phone"</span>).val();
+            <span class="comment">//正则表达式</span>
+            <span class="keyword">if</span>(phone &amp;&amp; <span class="regexp">/^1[3|4|5|7|8]\d{9}$/</span>.test(phone)){
+                <span class="keyword">var</span> url = <span class="string">"${pageContext.request.contextPath}/find?time="</span>+<span class="keyword">new</span> <span class="built_in">Date</span>().getTime();
+                <span class="keyword">var</span> data = <span class="string">"tel="</span>+phone;
+
+                $.post(url,data,<span class="function"><span class="keyword">function</span>(<span class="params">backData,textStatus,ajax</span>)</span>{
+
+                    $(<span class="string">"#show"</span>).html(<span class="string">"查询号码："</span>+backData.retData.telString+<span class="string">"&lt;br/&gt; 号码归属："</span>+backData.retData.carrier);
+                    <span class="comment">//alert(backData.retData.telString);</span>
+                    <span class="comment">//alert(backData.retData.province);</span>
+                    <span class="comment">//alert(backData.retData.carrier);</span>
+                })
+
+            }<span class="keyword">else</span>{
+                alert(<span class="string">"请输入11位手机号码"</span>);
+            }
+        })
+    })
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 </code></pre>
       
     </div>
@@ -265,9 +299,13 @@ request<span class="built_in">.</span>setAttribute(<span class="string">"map"</s
       
         <div class="post-tags">
           
-            <a href="/tags/el表达式/"> #el表达式 </a>
+            <a href="/tags/AJAX/"> #AJAX </a>
           
-            <a href="/tags/list/"> #list </a>
+            <a href="/tags/JSON/"> #JSON </a>
+          
+            <a href="/tags/jQuery/"> #jQuery </a>
+          
+            <a href="/tags/号码归属地/"> #号码归属地 </a>
           
         </div>
       
@@ -276,13 +314,11 @@ request<span class="built_in">.</span>setAttribute(<span class="string">"map"</s
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/coding/jqueryjsonphone.html">利用jQuery之AJAX获取网上api得到的JSON数据（号码归属地实例）</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/coding/developapi.html">Java Web开发文档整合</a>
+              <a href="/coding/elgetvalue.html">EL表达式取List集合中的元素值</a>
             
           </div>
         </div>
@@ -297,10 +333,10 @@ request<span class="built_in">.</span>setAttribute(<span class="string">"map"</s
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="coding/elgetvalue.html"
-     data-title="EL表达式取List集合中的元素值"
+        <div class="ds-share flat" data-thread-key="coding/jqueryjsonphone.html"
+     data-title="利用jQuery之AJAX获取网上api得到的JSON数据（号码归属地实例）"
      data-content=""
-     data-url="http://ezkuma.com/coding/elgetvalue.html">
+     data-url="http://ezkuma.com/coding/jqueryjsonphone.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -321,8 +357,8 @@ request<span class="built_in">.</span>setAttribute(<span class="string">"map"</s
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="coding/elgetvalue.html"
-               data-title="EL表达式取List集合中的元素值" data-url="http://ezkuma.com/coding/elgetvalue.html">
+          <div class="ds-thread" data-thread-key="coding/jqueryjsonphone.html"
+               data-title="利用jQuery之AJAX获取网上api得到的JSON数据（号码归属地实例）" data-url="http://ezkuma.com/coding/jqueryjsonphone.html">
           </div>
         
       </div>
@@ -421,7 +457,7 @@ request<span class="built_in">.</span>setAttribute(<span class="string">"map"</s
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-连接数据库中做select操作的代码，我是直接让其返回一个list集合，集合中为object数组"><span class="nav-number">1.</span> <span class="nav-text">1.连接数据库中做select操作的代码，我是直接让其返回一个list集合，集合中为object数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-之后配置struts，可以参见我的前几篇博文"><span class="nav-number">2.</span> <span class="nav-text">2.之后配置struts，可以参见我的前几篇博文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-编写Action"><span class="nav-number">3.</span> <span class="nav-text">3.编写Action</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-JSP页面取值部分"><span class="nav-number">4.</span> <span class="nav-text">4.JSP页面取值部分</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
