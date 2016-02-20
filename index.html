@@ -244,44 +244,12 @@
 &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> value=<span class="string">"上传"</span>&gt;
     &lt;/button&gt;
 &lt;/<span class="keyword">form</span>&gt;
-</code></pre><p>Action开发:</p>
-<pre><code><span class="keyword">private</span> String upfileFileName;<span class="comment">//页面中定义的name：upfile，后加FileName</span>
-<span class="keyword">private</span> File upfile;<span class="comment">//页面中定义的name：upfile</span>
-
-<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">setUpfileFileName</span><span class="params">(String upfileFileName)</span> </span>{
-    <span class="keyword">this</span>.upfileFileName = upfileFileName;
-}
-
-<span class="keyword">public</span> <span class="function">String <span class="title">getUpfileFileName</span><span class="params">()</span> </span>{
-    <span class="keyword">return</span> upfileFileName;
-}
-
-<span class="keyword">public</span> <span class="function">File <span class="title">getUpfile</span><span class="params">()</span> </span>{
-    <span class="keyword">return</span> upfile;
-}
-<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">setUpfile</span><span class="params">(File upfile)</span> </span>{
-    <span class="keyword">this</span>.upfile = upfile;
-}
-
-<span class="annotation">@Override</span>
-<span class="keyword">public</span> <span class="function">String <span class="title">execute</span><span class="params">()</span></span>{
-    String filePath = ServletActionContext.getServletContext().getRealPath(<span class="string">"/upload"</span>);
-    File fileSever = <span class="keyword">new</span> File(filePath, upfileFileName);
-    <span class="keyword">try</span> {
-        FileUtils.copyFile(upfile, fileSever);
-    } <span class="keyword">catch</span> (IOException e) {
-        <span class="comment">//异常操作</span>
-    }
-    <span class="keyword">return</span> SUCCESS;
-}
-</code></pre><p>这样上传功能就已经写好了，当然你会发现文件大小不能超过2M。这时需要在struts.xml中配置最大大小:</p>
-<pre><code><span class="tag">&lt;<span class="title">struts</span>&gt;</span>
-    ...
-    <span class="tag">&lt;<span class="title">constant</span> <span class="attribute">name</span>=<span class="value">"struts.multipart.maxSize"</span> <span class="attribute">value</span>=<span class="value">"10485760"</span> /&gt;</span>
-    //value值:10M为 10*1024*1024
-    ...
-<span class="tag">&lt;/<span class="title">struts</span>&gt;</span>
 </code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/coding/fileUploadStruts2.html#more">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
