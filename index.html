@@ -188,6 +188,129 @@
           
           
             
+              <a class="post-title-link" href="/coding/fileUploadStruts2.html">
+                Struts2 上传示例
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2016-02-20
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/coding/">coding</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/coding/fileUploadStruts2.html#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="coding/fileUploadStruts2.html"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>使用Struts2上传组件非常方便</p>
+<p>页面jsp：</p>
+<pre><code>&lt;<span class="keyword">form</span> action=<span class="string">"fileUploadAction"</span> enctype=<span class="string">"multipart/form-data"</span>
+    method=<span class="string">"POST"</span>&gt;
+    <span class="comment">//enctype必须为"multipart/form-data；method必须为"POST"</span>
+    &lt;<span class="keyword">input</span> name=<span class="string">"upfile"</span> <span class="keyword">type</span>=<span class="string">"file"</span>&gt;&lt;<span class="keyword">br</span> /&gt; 
+    <span class="comment">//name很重要，定义后直接在java中调用</span>
+&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> value=<span class="string">"上传"</span>&gt;
+    &lt;/button&gt;
+&lt;/<span class="keyword">form</span>&gt;
+</code></pre><p>Action开发:</p>
+<pre><code><span class="keyword">private</span> String upfileFileName;<span class="comment">//页面中定义的name：upfile，后加FileName</span>
+<span class="keyword">private</span> File upfile;<span class="comment">//页面中定义的name：upfile</span>
+
+<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">setUpfileFileName</span><span class="params">(String upfileFileName)</span> </span>{
+    <span class="keyword">this</span>.upfileFileName = upfileFileName;
+}
+
+<span class="keyword">public</span> <span class="function">String <span class="title">getUpfileFileName</span><span class="params">()</span> </span>{
+    <span class="keyword">return</span> upfileFileName;
+}
+
+<span class="keyword">public</span> <span class="function">File <span class="title">getUpfile</span><span class="params">()</span> </span>{
+    <span class="keyword">return</span> upfile;
+}
+<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">setUpfile</span><span class="params">(File upfile)</span> </span>{
+    <span class="keyword">this</span>.upfile = upfile;
+}
+
+<span class="annotation">@Override</span>
+<span class="keyword">public</span> <span class="function">String <span class="title">execute</span><span class="params">()</span></span>{
+    String filePath = ServletActionContext.getServletContext().getRealPath(<span class="string">"/upload"</span>);
+    File fileSever = <span class="keyword">new</span> File(filePath, upfileFileName);
+    <span class="keyword">try</span> {
+        FileUtils.copyFile(upfile, fileSever);
+    } <span class="keyword">catch</span> (IOException e) {
+        <span class="comment">//异常操作</span>
+    }
+    <span class="keyword">return</span> SUCCESS;
+}
+</code></pre><p>这样上传功能就已经写好了，当然你会发现文件大小不能超过2M。这时需要在struts.xml中配置最大大小:</p>
+<pre><code><span class="tag">&lt;<span class="title">struts</span>&gt;</span>
+    ...
+    <span class="tag">&lt;<span class="title">constant</span> <span class="attribute">name</span>=<span class="value">"struts.multipart.maxSize"</span> <span class="attribute">value</span>=<span class="value">"10485760"</span> /&gt;</span>
+    //value值:10M为 10*1024*1024
+    ...
+<span class="tag">&lt;/<span class="title">struts</span>&gt;</span>
+</code></pre>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/tech/markdownpad2.html">
                 MarkdownPad2 pro注册信息
               </a>
@@ -684,94 +807,6 @@ focus：焦点获取
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/coding/jquerymethodapi.html">
-                jQuery常用方法API
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-06-30
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/coding/">coding</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/coding/jquerymethodapi.html#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="coding/jquerymethodapi.html"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><strong>DOM标准规则下的jQuery常用API，注意：以下方法均由jQuery对象调用</strong></p>
-<pre><code><span class="function"><span class="title">each</span><span class="params">()</span></span>：是jQuery中专用于迭代数组的方法，参数为一个处理函数，this表示当前需要迭代的js对象
-<span class="function"><span class="title">append</span><span class="params">()</span></span>：追加到父元素之后
-<span class="function"><span class="title">prepend</span><span class="params">()</span></span>：追加到父元素之前
-<span class="function"><span class="title">after</span><span class="params">()</span></span>：追加到兄弟元素之后
-<span class="function"><span class="title">before</span><span class="params">()</span></span>：追加到兄弟元素之前 
-<span class="function"><span class="title">attr</span><span class="params">(name)</span></span>：获取属性值
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/coding/jquerymethodapi.html#more">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -810,7 +845,7 @@ focus：焦点获取
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -824,7 +859,7 @@ focus：焦点获取
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -869,7 +904,7 @@ focus：焦点获取
         <div class="copyright">
   
   &copy; &nbsp;  2014 - 
-  2015
+  2016
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>
