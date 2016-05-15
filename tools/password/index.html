@@ -61,7 +61,7 @@
   
 
   
-    娱乐&工具 // Wend
+     // Wend
   
 </title>
 </head>
@@ -183,20 +183,141 @@
   <div id="posts" class="posts-expand">
     
     
-      <hr>
-<h1 id="娱乐">娱乐</h1><ul>
-<li><a href="http://ezkuma.com/amuse/2048/">2048！</a></li>
-<li><a href="http://ezkuma.com/amuse/weibo/">微博尾巴</a></li>
-</ul>
-<h1 id="工具">工具</h1><ul>
-<li><a href="http://ezkuma.com/tools/kuaidi/">快递查询</a></li>
-<li><a href="http://ezkuma.com/tools/pansou/">网盘搜索</a></li>
-<li><a href="http://ezkuma.com/tools/password/">密码生成器</a></li>
-<li><a href="http://ezkuma.com/tools/rain/">雨声放松</a></li>
-<li><a href="http://ezkuma.com/tools/tv/">电视直播</a></li>
-<li><a href="http://ezkuma.com/tools/qrcode/">二维码生成器</a></li>
-</ul>
+      
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>随机密码生成器</title>
 
+<meta name="author" content="Wend">
+ <link rel="shortcut icon" href="http://ezkuma.com/favicon.ico">
+<link rel="stylesheet" href="http://cdn.staticfile.org/pure/0.4.2/pure-min.css">
+<link rel="stylesheet" href="./style.css">
+
+<style>
+#main {
+    max-width: 400px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #eee;
+    list-style: none;
+    font-size: 14px;
+}
+
+li {
+    clear: both;
+    overflow: hidden;
+    padding: .5em 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pure-form label {
+    float: left;
+    margin: 6px 0;
+}
+
+input {
+    float: right;
+    margin-top: 9px;
+}
+
+#password_length,#password_quantity {
+    margin-top: 0;
+    width: 5em;
+}
+
+#generate {
+    margin: 1em 0;
+}
+
+#output {
+	font-family: Monaco, Menlo, Consolas, Inconsolata, 'Deja Vu Sans Mono', 'Droid Sans Mono', 'Lucida Console', 'Courier New', Courier, monospace;
+}
+</style>
+</head>
+<body>
+<div id="nav"></div>
+
+<div id="header">
+    <h1>随机密码生成器</h1>
+</div>
+
+<div id="main" class="pure-form">
+	<ul>
+		<li><input type="checkbox" id="include_number" checked><label for="include_number">数字</label></li>
+		<li><input type="checkbox" id="include_lowercaseletters" checked><label for="include_lowercaseletters">小写字母</label></li>
+		<li><input type="checkbox" id="include_uppercaseletters" checked><label for="include_uppercaseletters">大写字母</label></li>
+		<li><input type="checkbox" id="include_punctuation"><label for="include_punctuation">标点符号</label></li>
+		<li><input type="checkbox" id="password_unique"><label for="password_unique">字符不重复</label></li>
+		<li><label for="password_length">密码长度</label><input type="number" id="password_length" min="0" value="7"></li>
+		<li><label for="password_quantity">密码数量</label><input type="number" id="password_quantity" min="0" value="1"></li>
+	</ul>
+	<button id="generate" class="pure-button pure-button-primary pure-input-1">生成密码</button>
+	<p>
+	  <textarea id="output" cols="40" rows="7" readonly class="pure-input-1"></textarea>
+  </p>
+	<p>&nbsp;</p>
+	<p align="center">©2014 <a href="http://ezkuma.com/" target="">Wend</a> </p>
+</div>
+
+<script>
+var $ = function(s){return document.getElementById(s)},
+	$includeNumber = $("include_number"),
+	$includeLowercaseletters = $("include_lowercaseletters"),
+	$includeUppercaseletters = $("include_uppercaseletters"),
+	$includePunctuation = $("include_punctuation"),
+	$passwordUnique = $("password_unique"),
+	$passwordLength = $("password_length"),
+	$passwordQuantity = $("password_quantity"),
+	$generate = $("generate"),
+	$output = $("output");
+
+function rand(max) {
+    return Math.floor(Math.random() * max);
+};
+
+$generate.onclick = function () {
+    var chars = "";
+
+    if ($includeNumber.checked) chars += "0123456789";
+    if ($includeLowercaseletters.checked) chars += "abcdefghijklmnopqrstuvwxyz";
+    if ($includeUppercaseletters.checked) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if ($includePunctuation.checked) chars += "`~!@#$%^&*()-_=+[{]}\|;:'\",<.>/?";
+
+    var passwords = [],
+		passwordUnique = $passwordUnique.checked;
+    for (var i = 0, l = $passwordQuantity.value; i < l; i++) {
+        var _chars = chars.split(""),
+			password = "";
+        for (var j = 0, k = $passwordLength.value; j < k; j++) {
+            if (_chars.length < 1) break;
+            var index = rand(_chars.length);
+            password += _chars[index];
+            if (passwordUnique) _chars.splice(index, 1);
+        };
+        passwords.push(password);
+    };
+    $output.value = passwords.join("\n");
+};
+</script>
+
+
+
+<!-- ezkuma.com Baidu tongji analytics -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ead386e7e220c59beb7bd3505261981' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+<script>var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F7d2b6bc6f724884e87a87b3504c6c352' type='text/javascript'%3E%3C/script%3E"));</script>
+<div style="display:none"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3017996'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s20.cnzz.com/stat.php%3Fid%3D3017996' type='text/javascript'%3E%3C/script%3E"));</script></div>
+</body>
+</html>
     
   </div>
 

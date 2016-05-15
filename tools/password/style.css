@@ -1,0 +1,45 @@
+body, input, button, textarea, select {
+    font-family: 'Helvetica Neue', Helvetica, 'Lucida Grande', Arial, 'Hiragino Sans GB', '\5FAE\8F6F\96C5\9ED1', 'WenQuanYi Micro Hei', STHeiti, SimSun, sans-serif;
+}
+
+#nav {
+    background: #222;
+}
+
+#nav a {
+    color: #ddd;
+	text-decoration: none;
+	padding: .5em;
+	display: inline-block;
+}
+
+#nav a:hover {
+	color: #eee;
+}
+
+#header, #main {
+    margin: 0 auto;
+    max-width: 768px;
+}
+
+#header {
+    margin-bottom: 2em;
+    padding: 1em;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    line-height: 1.5;
+}
+
+#header h1 {
+    margin: 0;
+    color: #444;
+    font-weight: 100;
+    font-size: 300%;
+}
+
+#header h2 {
+    margin: 0;
+    color: #666;
+    font-weight: 100;
+    font-size: 125%;
+}

@@ -61,7 +61,7 @@
   
 
   
-    娱乐&工具 // Wend
+     // Wend
   
 </title>
 </head>
@@ -183,19 +183,77 @@
   <div id="posts" class="posts-expand">
     
     
-      <hr>
-<h1 id="娱乐">娱乐</h1><ul>
-<li><a href="http://ezkuma.com/amuse/2048/">2048！</a></li>
-<li><a href="http://ezkuma.com/amuse/weibo/">微博尾巴</a></li>
-</ul>
-<h1 id="工具">工具</h1><ul>
-<li><a href="http://ezkuma.com/tools/kuaidi/">快递查询</a></li>
-<li><a href="http://ezkuma.com/tools/pansou/">网盘搜索</a></li>
-<li><a href="http://ezkuma.com/tools/password/">密码生成器</a></li>
-<li><a href="http://ezkuma.com/tools/rain/">雨声放松</a></li>
-<li><a href="http://ezkuma.com/tools/tv/">电视直播</a></li>
-<li><a href="http://ezkuma.com/tools/qrcode/">二维码生成器</a></li>
-</ul>
+      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>KUMA网盘搜索</title>
+<link rel="shortcut icon" href="http://ezkuma.com/favicon.ico">
+<meta name="keywords" content="网盘，网盘搜索，百度网盘，华为网盘，搜索">
+</head>
+
+<body>
+<p>
+
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>
+  <input name="ie" type="hidden" value="utf-8">
+</p>
+<form name="f1" onsubmit="return g(this)">
+  <div align="center">
+    <table bgcolor="#FFFFFF" style="font-size:9pt;">
+      <tr height="60"><td width="6" valign="top"><div align="center"></div></td>
+        <td width="477">
+          <p align="center"><img src="http://ezkumadown.qiniudn.com/wpss_logo.jpg" align="bottom" border="0">
+          </p>
+          <form id="form1" name="form1" method="post" action="">
+            <label for="textfield"></label>
+            <div align="center">
+              <input type="text" placeholder="请输入要搜索的资源名称" name="textfield" id="textfield">
+              <select name="select" id="select">
+                <option value="pan.baidu.com">百度网盘</option>
+                <option value="dl.dbank.com">华为网盘</option>
+                <option value="kuai.xunlei.com">迅雷快传</option>
+                <option value="fenxiang.qq.com">QQ旋风</option>
+                <option value="yunpan.cn">360云盘</option>
+                <option value="www.vdisk.cn">威盘</option>
+              </select>
+              <a onclick="openurl()"><img src="http://ezkumadown.qiniudn.com/search_button.png" align="absbottom"></a>
+            </div>
+          </form>
+<p align="center">
+  <label for="select"></label>
+ 
+      </p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">声明：本站搜索结果由百度提供，不存储任何网盘内容，只提供信息检索服务。如果有侵犯的地方，联系站长及时整改。</p>
+<p align="center">Copyright © 2014 <a href="http://ezkuma.com/">Wend</a>.</p>
+
+
+
+<!-- ezkuma.com Baidu tongji analytics -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ead386e7e220c59beb7bd3505261981' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+</td></tr></table></div></form></body>
+</html>
+<script type="text/javascript">
+	function openurl()
+	{
+	var url="http://www.baidu.com/baidu?word="+document.getElementById("textfield").value+"&tn=bds&cl=3&ct=2097152&si="+document.getElementById("select").value;
+	window.open(url);
+	}
+	window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"left","bdTop":"100"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 
     
   </div>

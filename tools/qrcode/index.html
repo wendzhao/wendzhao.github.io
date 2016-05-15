@@ -61,7 +61,7 @@
   
 
   
-    娱乐&工具 // Wend
+     // Wend
   
 </title>
 </head>
@@ -183,19 +183,46 @@
   <div id="posts" class="posts-expand">
     
     
-      <hr>
-<h1 id="娱乐">娱乐</h1><ul>
-<li><a href="http://ezkuma.com/amuse/2048/">2048！</a></li>
-<li><a href="http://ezkuma.com/amuse/weibo/">微博尾巴</a></li>
-</ul>
-<h1 id="工具">工具</h1><ul>
-<li><a href="http://ezkuma.com/tools/kuaidi/">快递查询</a></li>
-<li><a href="http://ezkuma.com/tools/pansou/">网盘搜索</a></li>
-<li><a href="http://ezkuma.com/tools/password/">密码生成器</a></li>
-<li><a href="http://ezkuma.com/tools/rain/">雨声放松</a></li>
-<li><a href="http://ezkuma.com/tools/tv/">电视直播</a></li>
-<li><a href="http://ezkuma.com/tools/qrcode/">二维码生成器</a></li>
-</ul>
+      <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>二维码生成器</title>
+
+<meta http-equiv="keywords" content="二维码生成器">
+<link rel="shortcut icon" href="http://ezkuma.com/favicon.ico">
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<h2>
+		<p class="text-center">简易二维码生成器</p>
+	</h2>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<textarea id="textarea" class="form-control" rows="7"></textarea>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	<br>
+	<p class="text-center">
+		<button id="btn" type="button" class="btn btn-success">生成</button>
+	</p>
+
+	<p class="text-center">
+		<img src="">
+	</p>
+
+	
+	<script type="text/javascript">
+		eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[02-5]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(3(){$("#btn").click(3(){4 0=$("#textarea").val();if(0.length<1){$("5").hide();alert("请输入内容！")}else{4 2="http://qr.liantu.com/api.php?0="+0;$("5").attr("2",2)}})})',[],6,'text||src|function|var|img'.split('|'),0,{}))
+	</script>
+</body>
+</html>
 
     
   </div>
