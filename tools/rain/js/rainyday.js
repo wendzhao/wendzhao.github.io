@@ -694,7 +694,30 @@ RainyDay.prototype.stackBlurCanvasRGB = function(top_x, top_y, width, height, ra
 
 		yp = width;
 
-		for (i = 1; i <= radius;="" i++)="" {="" yi="(yp" +="" x)="" <<="" 2;="" r_sum="" =="" (pr="pixels[yi]))" *="" (rbs="radiusPlus1" -="" i);="" g_sum="" (pg="pixels[yi" 1]))="" rbs;="" b_sum="" (pb="pixels[yi" 2]))="" r_in_sum="" g_in_sum="" b_in_sum="" stack="stack.next;" if="" (i="" <="" heightminus1)="" yp="" }="" stackin="stackStart;" stackout="stackEnd;" for="" (y="0;" y="" height;="" y++)="" p="yi" pixels[p]="(r_sum" mul_sum)="">> shg_sum;
+		for (i = 1; i <= radius; i++) {
+			yi = (yp + x) << 2;
+
+			r_sum += (stack.r = (pr = pixels[yi])) * (rbs = radiusPlus1 - i);
+			g_sum += (stack.g = (pg = pixels[yi + 1])) * rbs;
+			b_sum += (stack.b = (pb = pixels[yi + 2])) * rbs;
+
+			r_in_sum += pr;
+			g_in_sum += pg;
+			b_in_sum += pb;
+
+			stack = stack.next;
+
+			if (i < heightMinus1) {
+				yp += width;
+			}
+		}
+
+		yi = x;
+		stackIn = stackStart;
+		stackOut = stackEnd;
+		for (y = 0; y < height; y++) {
+			p = yi << 2;
+			pixels[p] = (r_sum * mul_sum) >> shg_sum;
 			pixels[p + 1] = (g_sum * mul_sum) >> shg_sum;
 			pixels[p + 2] = (b_sum * mul_sum) >> shg_sum;
 
@@ -756,7 +779,71 @@ function CollisionMatrix(x, y, r) {
 	this.xc = x;
 	this.yc = y;
 	this.matrix = new Array(x);
-	for (var i = 0; i <= (x="" +="" 5);="" i++)="" {="" this.matrix[i]="Array(y);" for="" (var="" j="0;" <="(y" ++j)="" this.matrix[i][j]="new" dropitem(null);="" }="" **="" *="" updates="" position="" of="" the="" given="" drop="" on="" collision="" matrix.="" @param="" raindrop="" to="" be="" positioned="" repositioned="" @forcedelete="" if="" true="" will="" removed="" from="" matrix="" @returns="" collisions="" any="" collisionmatrix.prototype.update="function(drop," forcedelete)="" (drop.gid)="" this.matrix[drop.gmx][drop.gmy].remove(drop);="" (forcedelete)="" return="" null;="" drop.gmx="Math.floor(drop.x" this.resolution);="" drop.gmy="Math.floor(drop.y" this.matrix[drop.gmx][drop.gmy].add(drop);="" var="" (collisions="" &&="" collisions.next="" !="null)" collisions.next;="" else="" drop.gid="Math.random().toString(36).substr(2," 9);="" };="" looks="" with="" raindrop.="" checked list="" drops="" that="" collide="" it="" collisionmatrix.prototype.collisions="function(drop)" item="new" first="item;" -="" 1,="" drop.gmy);="" 1);="" drop.gmx,="" first;="" appends="" all="" found="" at="" a="" location="" item.="" which="" results="" appended="" x="" in="" y="" last="" discovered="" collisionmatrix.prototype.addall="function(to," x,="" y)=""> 0 && y > 0 && x < this.xc && y < this.yc) {
+	for (var i = 0; i <= (x + 5); i++) {
+		this.matrix[i] = Array(y);
+		for (var j = 0; j <= (y + 5); ++j) {
+			this.matrix[i][j] = new DropItem(null);
+		}
+	}
+}
+
+/**
+ * Updates position of the given drop on the collision matrix.
+ * @param drop raindrop to be positioned/repositioned
+ * @forceDelete if true the raindrop will be removed from the matrix
+ * @returns collisions if any
+ */
+CollisionMatrix.prototype.update = function(drop, forceDelete) {
+	if (drop.gid) {
+		this.matrix[drop.gmx][drop.gmy].remove(drop);
+		if (forceDelete) {
+			return null;
+		}
+
+		drop.gmx = Math.floor(drop.x / this.resolution);
+		drop.gmy = Math.floor(drop.y / this.resolution);
+		this.matrix[drop.gmx][drop.gmy].add(drop);
+
+		var collisions = this.collisions(drop);
+		if (collisions && collisions.next != null) {
+			return collisions.next;
+		}
+	} else {
+		drop.gid = Math.random().toString(36).substr(2, 9);
+		drop.gmx = Math.floor(drop.x / this.resolution);
+		drop.gmy = Math.floor(drop.y / this.resolution);
+		this.matrix[drop.gmx][drop.gmy].add(drop);
+	}
+	return null;
+};
+
+/**
+ * Looks for collisions with the given raindrop.
+ * @param drop raindrop to be checked
+ * @returns list of drops that collide with it
+ */
+CollisionMatrix.prototype.collisions = function(drop) {
+	var item = new DropItem(null);
+	var first = item;
+
+	item = this.addAll(item, drop.gmx - 1, drop.gmy);
+	item = this.addAll(item, drop.gmx - 1, drop.gmy + 1);
+	item = this.addAll(item, drop.gmx, drop.gmy + 1);
+	item = this.addAll(item, drop.gmx + 1, drop.gmy + 1);
+	item = this.addAll(item, drop.gmx + 1, drop.gmy);
+
+	return first;
+};
+
+/**
+ * Appends all found drop at a given location to the given item.
+ * @param to item to which the results will be appended to
+ * @param x x position in the matrix
+ * @param y y position in the matrix
+ * @returns last discovered item on the list
+ */
+CollisionMatrix.prototype.addAll = function(to, x, y) {
+	if (x > 0 && y > 0 && x < this.xc && y < this.yc) {
 		var items = this.matrix[x][y];
 		while (items.next != null) {
 			items = items.next;
@@ -802,4 +889,4 @@ DropItem.prototype.remove = function(drop) {
 			prevItem.next = item.next;
 		}
 	}
-};</=></=>
+};
