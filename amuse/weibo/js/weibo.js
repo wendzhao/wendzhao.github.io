@@ -30,7 +30,7 @@ MOFUN.share = function (shareText, apiKeys) {
 	qq.id = "share_qq";
 	qq.title = "鍒嗕韩鍒拌吘璁井鍗�";
 	qq.target = "_blank";
-	qq.innerHTML = "<img src='http://mat1.gtimg.com/app/opent/images/websites/share/b24.png' alt='杞挱鍒拌吘璁井鍗�' />";
+	qq.innerHTML = "<img src="http://mat1.gtimg.com/app/opent/images/websites/share/b24.png" alt="杞挱鍒拌吘璁井鍗�">";
 	qq.href = "http://share.v.t.qq.com/index.php?c=share&a=index&url=" + share.url + "&pic=" + share.pic + "&appkey=" + qqKey + "&title=" + share.text;
 	qq.onclick = function () {
 		window.open(this.href, "_blank", "height=468,width=612,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=yes,status=no");
@@ -42,7 +42,7 @@ MOFUN.share = function (shareText, apiKeys) {
 	renren.id = "share_qzone";
 	renren.title = "鍒嗕韩鍒颁汉浜�";
 	renren.target = "_blank";
-	renren.innerHTML = "<img src='http://xnimg.cn/xnapp/share/img/v/180_24.png' alt='鍒嗕韩鍒颁汉浜�' />";
+	renren.innerHTML = "<img src="http://xnimg.cn/xnapp/share/img/v/180_24.png" alt="鍒嗕韩鍒颁汉浜�">";
 	renren.href = "http://widget.renren.com/dialog/share?resourceUrl=" + share.url + "&srcUrl=" + share.url + "&pic=" + share.pic + "&title=" + share.title + "&description=" + share.text;
 	renren.onclick = function () {
 		window.open(this.href, "_blank", "width=700,height=650,left=0,top=0,resizable=yes,scrollbars=1");
@@ -54,7 +54,7 @@ MOFUN.share = function (shareText, apiKeys) {
 	qzone.id = "share_qzone";
 	qzone.title = "鍒嗕韩鍒癚Q绌洪棿";
 	qzone.target = "_blank";
-	qzone.innerHTML = "<img src='http://bcs.duapp.com/picstore/FojDGBZexT.png' alt='鍒嗕韩鍒癚Q绌洪棿' />";
+	qzone.innerHTML = "<img src="http://bcs.duapp.com/picstore/FojDGBZexT.png" alt="鍒嗕韩鍒癚Q绌洪棿">";
 	qzone.href = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + share.url + "&pics=" + share.pic + "&title=" + share.title + "&summary=" + share.text + "&site=" + encodeURIComponent("榄旀柟MoFun");
 	qzone.onclick = function () {
 		window.open(this.href, "_blank", "width=600,height=622,toolbar=no,menubar=no,resizable=yes,scrollbars=1,status=no");
@@ -90,7 +90,7 @@ MOFUN.upgradeBrowser = function (list, ulCss, liCss) {
 	for (var i = 0, l = list.length; i < l; i++) {
 		if (list[i] in browsers) {
 			var browser = browsers[list[i]];
-			temp += "<li style='" + liCss + "'><a href='" + browser.link + "'><img src='../_global/browser_logo/" + list[i] + ".png' alt='" + browser.name + "' /> <span>" + browser.name + "</span></a></li>";
+			temp += "<li style="" + liCss + ""><a href="" + browser.link + ""><img src="../_global/browser_logo/" + list[i] + ".png" alt="" + browser.name + ""> <span>" + browser.name + "</span></a></li>";
 		};
 	};
 	div.innerHTML = temp;

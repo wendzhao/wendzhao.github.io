@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="Typecho," />
+  <meta name="keywords" content="dom4j," />
 
 
 
@@ -57,7 +57,7 @@
 
 
 
-  <title> 第一篇在Typecho上写的文章 // Wend </title>
+  <title> dom4j常用方法 // Wend </title>
 </head>
 
 <body>
@@ -186,7 +186,7 @@
           
           
             
-              第一篇在Typecho上写的文章
+              dom4j常用方法
             
           
         </h1>
@@ -194,14 +194,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2014-08-14
+          发表于 2016-08-14
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/notice/">notice</a>
+              <a href="/categories/coding/">coding</a>
 
               
               
@@ -214,8 +214,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/notice/firstte.html#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="notice/firstte.html"></span>
+            <a href="/coding/dom4j.html#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="coding/dom4j.html"></span>
             </a>
           </span>
           
@@ -229,9 +229,39 @@
       
 
       
-        <p>终于摆脱了WordPress臃肿的身躯，换上了Typecho的轻巧如燕的构筑。虽然功能上有点欠缺了，至少原本那么多漂亮的封面图不复存在了。其实我知道在Typecho上也是可以实现这个功能的，不过太过于繁琐了，不像WP那样直接上传就可以使用了。 从昨天开始换上了更加稳定的主机，主要因为原来的免费主机不再提供了，幸好我之前有备份，不然的话，可能一点东西都不剩了。看来免费的东西果然不能再多用了，域名和主机还是一年一续费吧，仔细想想还是很便宜了的。<br><a id="more"></a><br>最近也有点烦心事，学习的东西好久没有碰了。从昨天开始，也不知道是怎么了，手机不断有人打电话进来跟我说我打电话给他。莫名其妙的是，我根本就没有打出过电话，也没有任何的拨出记录。唉，要么只能换号码了，也不知道究竟是得罪了谁这么恶作剧。阴霾总会散去的~</p>
-<p><img src="http://ezkumaimg.qiniudn.com/usr/uploads/2014/08/1267007515.png" alt=""></p>
-
+        <p>Dom4j工具（基于DOM解析原理）：</p>
+<pre><code>读取xml文档：
+        Document doc = new SAXReader<span class="params">()</span>.read<span class="params">(<span class="string">"xml文件"</span>)</span>; 
+节点：
+        nodeIterator<span class="params">()</span>;  所有节点
+标签：
+        element<span class="params">(<span class="string">"名称"</span>)</span>   指定名称的第一个子标签对象
+        elementIterator<span class="params">(<span class="string">"名称"</span>)</span>;  指定名称的所有子标签对象
+        elements<span class="params">()</span>;  所有子标签对象
+属性：
+        attributeValue（“名称”） 指定名称的属性值
+        attribute<span class="params">(<span class="string">"名称"</span>)</span>   指定名称的属性对象
+                getName<span class="params">()</span>  属性名称
+                getValue（）  属性值
+        atributeIterator<span class="params">()</span>   所有属性对象（Iterator）
+        attributes<span class="params">()</span>       所有属性对象（List）
+文本：
+        getText（）  得到当前标签的文本
+        elementText<span class="params">(<span class="string">"子标签名称"</span>)</span>  得到子标签的文本
+</code></pre><p>在dom4j中如何使用xPath技术</p>
+<pre><code><span class="number">1</span>）导入xPath支持jar包 。  jaxen-<span class="number">1.1</span>-beta-<span class="number">6.</span>jar
+<span class="number">2</span>）使用xpath方法
+        <span class="function">List&lt;Node&gt;  <span class="title">selectNodes</span>(<span class="params"><span class="string">"xpath表达式"</span></span>)</span>;   查询多个节点对象
+        <span class="function">Node       <span class="title">selectSingleNode</span>(<span class="params"><span class="string">"xpath表达式"</span></span>)</span>;  查询一个节点对象
+</code></pre><p>xPath语法</p>
+<pre><code>/      绝对路径      表示从xml的根位置开始或子元素（一个层次结构）
+<span class="comment">//     相对路径      表示不分任何层次结构的选择元素。</span>
+<span class="built_in">*</span>      通配符        表示匹配所有元素
+[]     条件          表示选择什么条件下的元素
+@      属性          表示选择属性节点
+and    关系          表示条件的与关系（等价于&amp;&amp;）
+<span class="built_in">text</span><span class="params">()</span> 文本          表示选择文本内容
+</code></pre>
       
     </div>
 
@@ -239,7 +269,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Typecho/"> #Typecho </a>
+            <a href="/tags/dom4j/"> #dom4j </a>
           
         </div>
       
@@ -248,13 +278,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/life/onevol677.html">转自VOL.677 - 「ONE · 一个」</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/coding/rainyday.html">RainyDay---Android版本发布</a>
+              <a href="/coding/fileUploadStruts2.html">Struts2 上传示例</a>
             
           </div>
         </div>
@@ -269,10 +297,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="notice/firstte.html"
-     data-title="第一篇在Typecho上写的文章"
+        <div class="ds-share flat" data-thread-key="coding/dom4j.html"
+     data-title="dom4j常用方法"
      data-content=""
-     data-url="http://ezkuma.com/notice/firstte.html">
+     data-url="http://ezkuma.com/coding/dom4j.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -293,8 +321,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="notice/firstte.html"
-               data-title="第一篇在Typecho上写的文章" data-url="http://ezkuma.com/notice/firstte.html">
+          <div class="ds-thread" data-thread-key="coding/dom4j.html"
+               data-title="dom4j常用方法" data-url="http://ezkuma.com/coding/dom4j.html">
           </div>
         
       </div>
