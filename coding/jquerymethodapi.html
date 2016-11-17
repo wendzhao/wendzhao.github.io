@@ -1,27 +1,45 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
-<head>
+
+
+
   
 
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
 
 
-    <meta name="description" content="本博客创建于2014年1月22日，起初用来发布自己的Android程序，后来逐渐扩展成一个好东西分享网站！" />
 
+
+
+  
+  
+  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.3" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="jQuery," />
@@ -30,19 +48,82 @@
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+
+
+
+<meta name="description" content="DOM标准规则下的jQuery常用API，注意：以下方法均由jQuery对象调用
+each()：是jQuery中专用于迭代数组的方法，参数为一个处理函数，this表示当前需要迭代的js对象
+append()：追加到父元素之后
+prepend()：追加到父元素之前
+after()：追加到兄弟元素之后
+before()：追加到兄弟元素之前 
+attr(name)：获取属性值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery常用方法API">
+<meta property="og:url" content="http://ezkuma.com/coding/jquerymethodapi.html">
+<meta property="og:site_name" content="Wend">
+<meta property="og:description" content="DOM标准规则下的jQuery常用API，注意：以下方法均由jQuery对象调用
+each()：是jQuery中专用于迭代数组的方法，参数为一个处理函数，this表示当前需要迭代的js对象
+append()：追加到父元素之后
+prepend()：追加到父元素之前
+after()：追加到兄弟元素之后
+before()：追加到兄弟元素之前 
+attr(name)：获取属性值">
+<meta property="og:updated_time" content="2015-06-30T08:59:24.200Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery常用方法API">
+<meta name="twitter:description" content="DOM标准规则下的jQuery常用API，注意：以下方法均由jQuery对象调用
+each()：是jQuery中专用于迭代数组的方法，参数为一个处理函数，this表示当前需要迭代的js对象
+append()：追加到父元素之后
+prepend()：追加到父元素之前
+after()：追加到兄弟元素之后
+before()：追加到兄弟元素之前 
+attr(name)：获取属性值">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    analytics: {
-      google: ''
+    sidebar: "post",
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
     },
-    sidebar: 'post'
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
   };
 </script>
+
+
+
+
+
+
+
+  <title> jQuery常用方法API | Wend </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
 
 
   <script type="text/javascript">
@@ -57,35 +138,30 @@
 
 
 
-  <title> jQuery常用方法API // Wend </title>
-</head>
 
-<body>
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
 
-  <div class="container one-column page-post-detail">
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
     <div class="headband"></div>
 
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">Wend</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Keep On Carving</p>
+</div>
 
 <div class="site-nav-toggle">
   <button>
@@ -95,57 +171,60 @@
   </button>
 </div>
 
-<div class="site-nav">
+<nav class="site-nav">
   
 
   
-    <ul id="menu" class="menu menu-left">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
-          <a href="/">
-            <i class="menu-item-icon icon-home"></i> <br />
+          <a href="/" rel="section">
+            
             首页
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives">
-            <i class="menu-item-icon icon-archives"></i> <br />
+          <a href="/archives" rel="section">
+            
             归档
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags">
-            <i class="menu-item-icon icon-tags"></i> <br />
+          <a href="/tags" rel="section">
+            
             标签
           </a>
         </li>
       
         
         <li class="menu-item menu-item-amuse&tools">
-          <a href="/amuse&tools">
-            <i class="menu-item-icon icon-amuse&tools"></i> <br />
-            娱乐&工具
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-taobao">
-          <a href="https://shop166304461.taobao.com/">
-            <i class="menu-item-icon icon-taobao"></i> <br />
-            淘宝店铺
+          <a href="/amuse&tools" rel="section">
+            
+            menu.amuse&tools
           </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about">
-            <i class="menu-item-icon icon-about"></i> <br />
+          <a href="/about" rel="section">
+            
             关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+            搜索
           </a>
         </li>
       
@@ -155,10 +234,10 @@
   
     <div class="site-search">
       
-  
-<form class="site-search-form">
+  <form class="site-search-form">
   <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
 </form>
+
 <script type="text/javascript">
   (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
     (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
@@ -168,70 +247,100 @@
   _st('install', 'Pwsy245ur28DrbHssr4n','2.0.0');
 </script>
 
-<div class="site-search-toggle"></div>
+
+
     </div>
   
-</div>
+</nav>
 
 
-      </div>
-    </div>
 
-    <div id="main" class="main">
+ </div>
+    </header>
+
+    <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
     
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              jQuery常用方法API
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-06-30
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://ezkuma.com/coding/jquerymethodapi.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Wend">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Wend">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Wend" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
 
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
+        
+          <h1 class="post-title" itemprop="name headline">
             
-              <a href="/categories/coding/">coding</a>
+            
+              
+                jQuery常用方法API
+              
+            
+          </h1>
+        
 
-              
-              
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
 
             
           </span>
-        
 
-        
           
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/coding/jquerymethodapi.html#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="coding/jquerymethodapi.html"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
 
-    <div class="post-body">
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/coding/jquerymethodapi.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="coding/jquerymethodapi.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
@@ -281,26 +390,47 @@ $(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：�
       
     </div>
 
-    <div class="post-footer">
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/jQuery/"> #jQuery </a>
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
           
         </div>
       
 
       
         <div class="post-nav">
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-nav-next post-nav-item">
             
-              <a href="/coding/jqueryeventapi.html">jQuery常用事件API</a>
+              <a href="/coding/struts2devprocess.html" rel="next" title="Struts2开发流程">
+                <i class="fa fa-chevron-left"></i> Struts2开发流程
+              </a>
             
           </div>
 
-          <div class="post-nav-next post-nav-item">
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-              <a href="/coding/struts2devprocess.html">Struts2开发流程</a>
+              <a href="/coding/jqueryeventapi.html" rel="prev" title="jQuery常用事件API">
+                jQuery常用事件API <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -308,8 +438,8 @@ $(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：�
 
       
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
 
@@ -335,26 +465,26 @@ $(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：�
 </div>
       
     </div>
+  </div>
 
-    
-      <div class="comments" id="comments">
-        
-          <div class="ds-thread" data-thread-key="coding/jquerymethodapi.html"
-               data-title="jQuery常用方法API" data-url="http://ezkuma.com/coding/jquerymethodapi.html">
+
           </div>
-        
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="coding/jquerymethodapi.html"
+           data-title="jQuery常用方法API" data-url="http://ezkuma.com/coding/jquerymethodapi.html">
       </div>
     
   </div>
 
 
         </div>
-
         
-      </div>
-
-
-      
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -364,27 +494,22 @@ $(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：�
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
+
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/avatar.jpg" alt="Wend" />
-          <p class="site-author-name">Wend</p>
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Wend" />
+          <p class="site-author-name" itemprop="name">Wend</p>
+          <p class="site-description motion-element" itemprop="description">本博客创建于2014年1月22日，起初用来发布自己的Android程序，后来逐渐扩展成一个好东西分享网站！</p>
         </div>
-        <p class="site-description motion-element">本博客创建于2014年1月22日，起初用来发布自己的Android程序，后来逐渐扩展成一个好东西分享网站！</p>
-        <div class="site-state motion-element">
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">35</span>
@@ -392,21 +517,25 @@ $(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：�
             </a>
           </div>
 
-          <div class="site-state-item site-state-categories">
-            
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">分类</span>
+          
+            <div class="site-state-item site-state-categories">
               
-          </div>
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">57</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
               </a>
-          </div>
+            </div>
+          
 
-        </div>
+        </nav>
 
         
 
@@ -414,12 +543,18 @@ $(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：�
           
             
               <span class="links-of-author-item">
-              <a href="http://weibo.com/573561177" target="_blank">Weibo</a>
-            </span>
+                <a href="http://weibo.com/573561177" target="_blank" title="Weibo">
+                  
+                  Weibo
+                </a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://github.com/wendzhao" target="_blank">Github</a>
-            </span>
+                <a href="https://github.com/wendzhao" target="_blank" title="Github">
+                  
+                  Github
+                </a>
+              </span>
             
           
         </div>
@@ -427,236 +562,113 @@ $(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：�
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
+    </main>
 
-      
-        <div class="post-toc-wrap sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
-          <div class="post-toc">
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
-        </div>
-      
-
-    </div>
-  </div>
-
-
-    </div>
-
-    <div id="footer" class="footer">
+    <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
-  &copy; &nbsp;  2014 - 
-  2016
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-heart"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author">Wend</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
+  <span class="author" itemprop="copyrightHolder">Wend</span>
 </div>
 
 
 
+        
+
+        
       </div>
-    </div>
+    </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
   
 
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
-  
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
-
-
-
-  <script type="text/javascript" src="/js/search-toggle.js"></script>
-
-  
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.3" id="bootstrap.scrollspy.custom"></script>
-
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var $sidebarInner = $('.sidebar-inner');
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.didShow', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-          var self = this;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      $(indicator).velocity('stop').velocity({
-        opacity: action === 'show' ? 0.4 : 0
-      }, { duration: 100 });
-    }
-
-  });
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
 
-  <script type="text/javascript" id="sidebar.nav">
-    $(document).ready(function () {
-      var html = $('html');
-
-      $('.sidebar-nav li').on('click', function () {
-        var item = $(this);
-        var activeTabClassName = 'sidebar-nav-active';
-        var activePanelClassName = 'sidebar-panel-active';
-        if (item.hasClass(activeTabClassName)) {
-          return;
-        }
-
-        var currentTarget = $('.' + activePanelClassName);
-        var target = $('.' + item.data('target'));
-
-        currentTarget.velocity('transition.slideUpOut', 200, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', 200)
-            .addClass(activePanelClassName);
-        });
-
-        item.siblings().removeClass(activeTabClassName);
-        item.addClass(activeTabClassName);
-      });
-
-      $('.post-toc a').on('click', function (e) {
-        e.preventDefault();
-        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        });
-      });
-
-      // Expand sidebar on post detail page by default, when post has a toc.
-      var $tocContent = $('.post-toc-content');
-      if (isDesktop() && CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
-      }
-    });
-  </script>
 
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-    });
-  </script>
+
+
 
   
 
+
+
   
+  <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.4.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.4.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.4.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.4.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.4.3"></script>
+
+
+
   
 
   
@@ -668,6 +680,7 @@ $(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：�
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
       ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
@@ -678,19 +691,23 @@ $(<span class="string">"&lt;div id='xxID'&gt;HTML代码&lt;/div&gt;"</span>)：�
   
 
 
+
+
+
+
+
+
   
   
 
   
-  <!-- lazyload -->
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-      <script type="text/javascript">
-        jQuery(function() {          
-            jQuery("#posts img").lazyload({
-              placeholder:"http://www.arao.me/loading.gif",  
-                effect:"fadeIn"
-              });
-            });
-    </script>   
+
+  
+
+  
+
+  
+
+
 </body>
 </html>

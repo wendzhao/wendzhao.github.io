@@ -1,27 +1,45 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
-<head>
+
+
+
   
 
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
 
 
-    <meta name="description" content="本博客创建于2014年1月22日，起初用来发布自己的Android程序，后来逐渐扩展成一个好东西分享网站！" />
 
+
+
+  
+  
+  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.3" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo,next" />
@@ -30,19 +48,178 @@
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+
+
+
+<meta name="description" content="&amp;lt;!DOCTYPE html&amp;gt;
+
+
+
+二维码生成器
+
+
+
+
+
+
+
+
+
+
+	
+		简易二维码生成器
+	
+	
+		
+		
+			
+		
+		
+	
+	
+	
+		生成
+	
+
+	
+		
+	
+
+	
+	
+		eval(function(p,a,c,k,e,r){e=String;if(&apos;0&apos;.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){retur">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wend">
+<meta property="og:url" content="http://ezkuma.com/tools/qrcode/index.html">
+<meta property="og:site_name" content="Wend">
+<meta property="og:description" content="&amp;lt;!DOCTYPE html&amp;gt;
+
+
+
+二维码生成器
+
+
+
+
+
+
+
+
+
+
+	
+		简易二维码生成器
+	
+	
+		
+		
+			
+		
+		
+	
+	
+	
+		生成
+	
+
+	
+		
+	
+
+	
+	
+		eval(function(p,a,c,k,e,r){e=String;if(&apos;0&apos;.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){retur">
+<meta property="og:updated_time" content="2015-07-23T06:15:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wend">
+<meta name="twitter:description" content="&amp;lt;!DOCTYPE html&amp;gt;
+
+
+
+二维码生成器
+
+
+
+
+
+
+
+
+
+
+	
+		简易二维码生成器
+	
+	
+		
+		
+			
+		
+		
+	
+	
+	
+		生成
+	
+
+	
+		
+	
+
+	
+	
+		eval(function(p,a,c,k,e,r){e=String;if(&apos;0&apos;.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){retur">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    analytics: {
-      google: ''
+    sidebar: "post",
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
     },
-    sidebar: 'post'
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
   };
 </script>
+
+
+
+
+
+
+
+  <title>
+  
+
+  
+     | Wend
+  
+</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
 
 
   <script type="text/javascript">
@@ -57,41 +234,30 @@
 
 
 
-  <title>
-  
+
+
+
+
 
   
-     // Wend
   
-</title>
-</head>
 
-<body>
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
-
-  <div class="container one-column ">
+  <div class="container one-collumn   ">
     <div class="headband"></div>
 
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">Wend</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Keep On Carving</p>
+</div>
 
 <div class="site-nav-toggle">
   <button>
@@ -101,57 +267,60 @@
   </button>
 </div>
 
-<div class="site-nav">
+<nav class="site-nav">
   
 
   
-    <ul id="menu" class="menu menu-left">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
-          <a href="/">
-            <i class="menu-item-icon icon-home"></i> <br />
+          <a href="/" rel="section">
+            
             首页
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives">
-            <i class="menu-item-icon icon-archives"></i> <br />
+          <a href="/archives" rel="section">
+            
             归档
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags">
-            <i class="menu-item-icon icon-tags"></i> <br />
+          <a href="/tags" rel="section">
+            
             标签
           </a>
         </li>
       
         
         <li class="menu-item menu-item-amuse&tools">
-          <a href="/amuse&tools">
-            <i class="menu-item-icon icon-amuse&tools"></i> <br />
-            娱乐&工具
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-taobao">
-          <a href="https://shop166304461.taobao.com/">
-            <i class="menu-item-icon icon-taobao"></i> <br />
-            淘宝店铺
+          <a href="/amuse&tools" rel="section">
+            
+            menu.amuse&tools
           </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about">
-            <i class="menu-item-icon icon-about"></i> <br />
+          <a href="/about" rel="section">
+            
             关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+            搜索
           </a>
         </li>
       
@@ -161,10 +330,10 @@
   
     <div class="site-search">
       
-  
-<form class="site-search-form">
+  <form class="site-search-form">
   <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
 </form>
+
 <script type="text/javascript">
   (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
     (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
@@ -174,21 +343,32 @@
   _st('install', 'Pwsy245ur28DrbHssr4n','2.0.0');
 </script>
 
-<div class="site-search-toggle"></div>
+
+
     </div>
   
-</div>
+</nav>
 
 
-      </div>
-    </div>
 
-    <div id="main" class="main">
+ </div>
+    </header>
+
+    <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
+  <header class="post-header">
+
+	<h2 class="post-title" itemprop="name headline"></h2>
+
+
+
+</header>
+
     
     
       <!DOCTYPE html>
@@ -236,13 +416,23 @@
   </div>
 
 
-        </div>
+          </div>
+          
 
-        
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="tools/qrcode/index.html"
+           data-title="" data-url="http://ezkuma.com/tools/qrcode/index.html">
       </div>
+    
+  </div>
 
 
-      
+        </div>
+        
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -252,18 +442,22 @@
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/avatar.jpg" alt="Wend" />
-          <p class="site-author-name">Wend</p>
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Wend" />
+          <p class="site-author-name" itemprop="name">Wend</p>
+          <p class="site-description motion-element" itemprop="description">本博客创建于2014年1月22日，起初用来发布自己的Android程序，后来逐渐扩展成一个好东西分享网站！</p>
         </div>
-        <p class="site-description motion-element">本博客创建于2014年1月22日，起初用来发布自己的Android程序，后来逐渐扩展成一个好东西分享网站！</p>
-        <div class="site-state motion-element">
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">35</span>
@@ -271,21 +465,25 @@
             </a>
           </div>
 
-          <div class="site-state-item site-state-categories">
-            
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">分类</span>
+          
+            <div class="site-state-item site-state-categories">
               
-          </div>
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">57</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
               </a>
-          </div>
+            </div>
+          
 
-        </div>
+        </nav>
 
         
 
@@ -293,12 +491,18 @@
           
             
               <span class="links-of-author-item">
-              <a href="http://weibo.com/573561177" target="_blank">Weibo</a>
-            </span>
+                <a href="http://weibo.com/573561177" target="_blank" title="Weibo">
+                  
+                  Weibo
+                </a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://github.com/wendzhao" target="_blank">Github</a>
-            </span>
+                <a href="https://github.com/wendzhao" target="_blank" title="Github">
+                  
+                  Github
+                </a>
+              </span>
             
           
         </div>
@@ -306,100 +510,148 @@
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
         
-      </div>
+        
+
+        
+
+
+      </section>
 
       
 
     </div>
-  </div>
+  </aside>
 
 
-    </div>
-
-    <div id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; &nbsp;  2014 - 
-  2016
-  <span class="with-love">
-    <i class="icon-heart"></i>
-  </span>
-  <span class="author">Wend</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-
+        
       </div>
-    </div>
+    </main>
 
-    <div class="back-to-top"></div>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wend</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.4.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.4.3"></script>
+
+
 
   
   
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
 
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
   
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.4.3"></script>
 
 
 
-  <script type="text/javascript" src="/js/search-toggle.js"></script>
+  
 
+  
+    
   
 
   <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-    });
+    var duoshuoQuery = {short_name:"ezkuma"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
   </script>
 
   
 
-  
+
+
+
+
+
+
 
   
   
 
   
-  <!-- lazyload -->
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-      <script type="text/javascript">
-        jQuery(function() {          
-            jQuery("#posts img").lazyload({
-              placeholder:"http://www.arao.me/loading.gif",  
-                effect:"fadeIn"
-              });
-            });
-    </script>   
+
+  
+
+  
+
+  
+
+
 </body>
 </html>
