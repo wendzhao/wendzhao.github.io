@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.1.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="基本上论坛里做在线音乐的都在用百度的API，进来发现百度的API不仅歌曲的质量不可以保证，而且返回信息里面只有URL，没有一些相关的属性信息。所以就想方设法弄到了QQ音乐的API 已经用xCode尝试过并且可行的API：★搜索音乐（歌词）http://shopcgi.qqmusic.qq.com/fcgi-bin/shopsearch.fcg?value=歌曲名&amp;amp;artist=歌手名&amp;am">
+<meta name="keywords" content="QQ音乐,API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QQ音乐的各种相关API">
+<meta property="og:url" content="https://wendzhao.github.io/tech/qqmusicapi.html">
+<meta property="og:site_name" content="Wend">
+<meta property="og:description" content="基本上论坛里做在线音乐的都在用百度的API，进来发现百度的API不仅歌曲的质量不可以保证，而且返回信息里面只有URL，没有一些相关的属性信息。所以就想方设法弄到了QQ音乐的API 已经用xCode尝试过并且可行的API：★搜索音乐（歌词）http://shopcgi.qqmusic.qq.com/fcgi-bin/shopsearch.fcg?value=歌曲名&amp;amp;artist=歌手名&amp;am">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2015-06-29T06:48:58.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="QQ音乐的各种相关API">
+<meta name="twitter:description" content="基本上论坛里做在线音乐的都在用百度的API，进来发现百度的API不仅歌曲的质量不可以保证，而且返回信息里面只有URL，没有一些相关的属性信息。所以就想方设法弄到了QQ音乐的API 已经用xCode尝试过并且可行的API：★搜索音乐（歌词）http://shopcgi.qqmusic.qq.com/fcgi-bin/shopsearch.fcg?value=歌曲名&amp;amp;artist=歌手名&amp;am">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://wendzhao.github.io/tech/qqmusicapi">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>QQ音乐的各种相关API | Wend</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3ead386e7e220c59beb7bd3505261981";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wend</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Keep On Carving</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-amuse&tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/amuse&tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>娱乐&工具</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
+</form>
+
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Pwsy245ur28DrbHssr4n','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wendzhao.github.io/tech/qqmusicapi.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wend">
+      <meta itemprop="description" content="本博客创建于2014年1月22日，起初用来发布自己的Android程序，后来逐渐扩展成一个好东西分享网站！">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wend">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">QQ音乐的各种相关API
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-04-17 05:20:13" itemprop="dateCreated datePublished" datetime="2014-04-17T05:20:13+08:00">2014-04-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2015-06-29 14:48:58" itemprop="dateModified" datetime="2015-06-29T14:48:58+08:00">2015-06-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/tech/" itemprop="url" rel="index"><span itemprop="name">tech</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/tech/qqmusicapi.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/tech/qqmusicapi.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>基本上论坛里做在线音乐的都在用百度的API，进来发现百度的API不仅歌曲的质量不可以保证，而且返回信息里面只有URL，没有一些相关的属性信息。所以就想方设法弄到了QQ音乐的API</p>
+<p>已经用xCode尝试过并且可行的API：<br>★搜索音乐（歌词）<br><a href="http://shopcgi.qqmusic.qq.com/fcgi-bin/shopsearch.fcg?value=歌曲名&amp;artist=歌手名&amp;type=qry_song&amp;out=json&amp;page_no=页码&amp;page_record_num=单页记录数量" target="_blank" rel="noopener">http://shopcgi.qqmusic.qq.com/fcgi-bin/shopsearch.fcg?value=歌曲名&amp;artist=歌手名&amp;type=qry_song&amp;out=json&amp;page_no=页码&amp;page_record_num=单页记录数量</a><br>这个网上搜索不到的，自己用fiddler抓出来的，会返回一个json，注意的是返回的json的key没有用引号引起来而且需要对URL本身和返回的内容使用gb2312编（解）码<br>看这样一个例子：</p>
+<pre><code>NSString *title=@&quot;记得&quot;;
+NSString *artist=@&quot;林俊杰&quot;;
+//-使用歌名和歌手执行搜索
+NSString *searchURLString=[NSString stringWithFormat:@&quot;http://shopcgi.qqmusic.qq.com/fcgi-bin/shopsearch.fcg?value=%@&amp;artist=%@&amp;type=qry_song&amp;out=json&amp;page_no=%i&amp;page_record_num=%i&quot;,title,artist,1,3];
+searchURLString=[searchURLString stringByAddingPercentEscapesUsingEncoding:NSGB2312StringEndoding];
+NSString *searchResult=[NSString stringWithContentsOfURL:[NSURL URLWithString:searchURLString] encoding:NSGB2312StringEndoding error:nil];
+NSLog(@&quot;%@&quot;,searchResult);
+</code></pre><p>就会得到这样的不标准json，之后的步骤简单的就说下，截取searchCallBack()中间的内容，对key进行加引号，然后就可以用json解码框架来解码<br><a id="more"></a></p>
+<pre><code>searchCallBack
+({result:&quot;0&quot;,msg:&quot;&quot;,totalnum:&quot;138&quot;,curnum:&quot;3&quot;,search:&quot;记得&quot;,songlist:
+[{idx:&quot;1&quot;,song_id:&quot;1679711&quot;,song_name:&quot;记
+得&quot;,album_name:&quot;上海老歌 CD07&quot;,singer_name:&quot;欧阳飞莺(Chu Shia)&quot;,location:&quot;8&quot;,singer_id:&quot;16343&quot;,album_id:&quot;133528&quot;,price:&quot;250&quot;},
+{idx:&quot;2&quot;,song_id:&quot;1516144&quot;,song_name:&quot;记
+得&quot;,album_name:&quot;小精选&quot;,singer_name:&quot;刘浩
+龙&quot;,location:&quot;3&quot;,singer_id:&quot;4797&quot;,album_id:&quot;122193&quot;,price:&quot;250&quot;},{idx:&quot;3&quot;,song_id:&quot;1512932&quot;,song_name:&quot;记得
+（《爱情睡醒了》插曲）&quot;,album_name:&quot;爱情睡醒
+了&quot;,singer_name:&quot;林俊
+杰&quot;,location:&quot;8&quot;,singer_id:&quot;4286&quot;,album_id:&quot;121988&quot;,price:&quot;320&quot;}]})
+</code></pre><p>★下载歌词<br>搜索完成后，每首歌曲会对应一个price属性，如果这个属性对应的值是250就说明没有歌词，确认有歌词，就可以用下面的接口下载歌词<br><a href="http://music.qq.com/miniportal/static/lyric/歌曲id求余100/歌曲id.xml" target="_blank" rel="noopener">http://music.qq.com/miniportal/static/lyric/歌曲id求余100/歌曲id.xml</a><br>如果正常会返回这样的xml（json的返回地址没抓到）</p>
+<p>看这个例子：<br>前一个例子中返回的第三首歌有的price属性值为320，表示有歌词，如果下载这首歌的歌词，就用这个url：<br><a href="http://music.qq.com/miniportal/static/lyric/32/1512932.xml" target="_blank" rel="noopener">http://music.qq.com/miniportal/static/lyric/32/1512932.xml</a><br>腾讯就会送回这样的xml</p>
+<pre><code>&lt;lyric&gt;
+&lt;![CDATA[
+[ti:记得]
+[ar:林俊杰]
+[al:288966]
+[offset:0]
+[00:17.55]谁还记得
+[00:19.33]是谁先说永远的爱我
+[00:26.03]以前的一句话
+[00:29.02]是我们以后的伤口
+[00:33.75]过了太久
+[00:35.47]没人记得当初那些温柔
+[00:42.40]我和你手牵手
+[00:45.36]说要一起走到最后
+[01:06.37]我们都忘了
+[01:11.05]这条路走了多久
+[01:15.11]心中是清楚的
+[01:17.49]有一天有一天都会停的
+[01:23.04]让时间说真话
+[01:26.94]虽然我也害怕
+[01:31.00]在天黑了以后
+[01:33.29]我们都不知道会不会有以后
+[01:41.82]谁还记得
+[01:43.61]是谁先说永远的爱我
+[01:50.24]以前的一句话
+[01:53.24]是我们以后的伤口
+[01:57.77]过了太久
+[01:59.44]没人记得当初那些温柔
+[02:06.20]我和你手牵手
+[02:09.07]说要一起走到最后
+[02:30.40]我们都累了
+[02:34.44]却没办法往回走
+[02:38.34]两颗心都迷惑
+[02:40.69]怎么说怎么说都没有救
+[02:46.22]亲爱的为什么
+[02:50.21]也许你也不懂
+[02:54.11]两个相爱的人
+[02:56.65]等着对方先说找分开的理由
+[03:05.15]谁还记得爱情开始变化的时候
+[03:13.52]我和你的眼中
+[03:16.49]看见了不同的天空
+[03:21.09]走的太远
+[03:22.77]终于走到分岔路的路口
+[03:29.40]是不是你和我
+[03:32.40]要有两个相反的梦
+[03:40.84]谁还记得
+[03:42.60]是谁先说永远的爱我
+[03:49.38]以前的一句话
+[03:52.22]是我们以后的伤口
+[03:56.82]过了太久
+[03:58.44]没人记得当初那些温柔
+[04:05.48]我和你手牵手
+[04:08.15]说要一起走到最后
+[04:21.42]我和你手牵手
+[04:24.36]说要一起走到以后
+]]&gt;
+&lt;/lyric&gt;
+</code></pre><p>如果你用price为250的歌曲对应的id来搜索，比如第一个例子中的第一首歌，那么你使用的这个url：<br><a href="http://music.qq.com/miniportal/static/lyric/11/16797.xml" target="_blank" rel="noopener">http://music.qq.com/miniportal/static/lyric/11/16797.xml</a></p>
+<p>那么就会送回404错误信息：</p>
+<p>The requested URL ‘/miniportal/static/lyric/11/1679711.xml’ was not found on this server.<br>★获取专辑插图<br>如果需要获取专辑插图，就可以使用下面的接口<br><a href="http://imgcache.qq.com/music/photo/album/专辑id求余100/albumpic_专辑id_0.jpg" target="_blank" rel="noopener">http://imgcache.qq.com/music/photo/album/专辑id求余100/albumpic_专辑id_0.jpg</a><br>看这个例子：<br>要获取第一个例子的中的第三个结果的专辑插图，就这么用：<br><a href="http://imgcache.qq.com/music/photo/album/88/albumpic_121988_0.jpg" target="_blank" rel="noopener">http://imgcache.qq.com/music/photo/album/88/albumpic_121988_0.jpg</a><br>就会返回500*500的插图（QQ音乐的插图清晰度很高）</p>
+<p>★获取排行榜（尚未经过xCode测试）<br>目前抓到两个排行榜的地址：<br>新歌榜：<a href="http://music.qq.com/musicbox/shop/v3/data/hit/hit_newsong.js" target="_blank" rel="noopener">http://music.qq.com/musicbox/shop/v3/data/hit/hit_newsong.js</a><br>总榜：<a href="http://music.qq.com/musicbox/shop/v3/data/hit/hit_all.js" target="_blank" rel="noopener">http://music.qq.com/musicbox/shop/v3/data/hit/hit_all.js</a></p>
+<p>因为还没有进行进一步的尝试就不放例子了</p>
+<p>★获取音乐地址<br><a href="http://stream1歌曲信息中的location值.qqmusic.qq.com/3歌曲ID（7位数，不足在前面补0）" target="_blank" rel="noopener">http://stream1歌曲信息中的location值.qqmusic.qq.com/3歌曲ID（7位数，不足在前面补0）</a>. mp3<br>例如之前搜索出来的第一首歌的地址应该是:<br><a href="http://stream18.qqmusic.qq.com/31679711" target="_blank" rel="noopener">http://stream18.qqmusic.qq.com/31679711</a>. mp3<br>第二首歌的地址应该是<br><a href="http://stream13.qqmusic.qq.com/31516144" target="_blank" rel="noopener">http://stream13.qqmusic.qq.com/31516144</a>. mp3</p>
+<p>这个仍然在测试中</p>
+<p>原帖地址：<a href="http://www.cocoachina.com/bbs/read.php?tid=115028&amp;fpage=41" target="_blank" rel="noopener">http://www.cocoachina.com/bbs/read.php?tid=115028&amp;fpage=41</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechat-pay.jpg" alt="Wend 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Wend 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/QQ音乐/" rel="tag"># QQ音乐</a>
+          
+            <a href="/tags/API/" rel="tag"># API</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/life/qrj.html" rel="next" title="特别的爱给特别的你——情人节快乐！">
+                <i class="fa fa-chevron-left"></i> 特别的爱给特别的你——情人节快乐！
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/notice/2048.html" rel="prev" title="庆祝最火游戏2048上线">
+                庆祝最火游戏2048上线 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wend">
+            
+              <p class="site-author-name" itemprop="name">Wend</p>
+              <div class="site-description motion-element" itemprop="description">本博客创建于2014年1月22日，起初用来发布自己的Android程序，后来逐渐扩展成一个好东西分享网站！</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wend</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.0</div>
+
+
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me" class="theme-link" rel="noopener" target="_blank">Coding Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <!-- LOCAL: You can save these files to your site and update links -->
+
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
+<!-- END LOCAL -->
+
+<script>
+  function renderGitment() {
+    var gitment = new Gitmint({
+      id: window.location.pathname,
+      owner: 'wendzhao',
+      repo: 'Gitment',
+      
+        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+      
+      oauth: {
+      
+      
+        client_secret: '6bc6043c1017b40a1712cf1cf916f3e6a0c7d9f5',
+      
+        client_id: '4ec6a26361b84df5c6d8'
+      }
+    });
+    gitment.render('gitment-container');
+  }
+
+  
+    renderGitment();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

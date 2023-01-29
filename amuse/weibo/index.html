@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0"/>
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.1.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="自定义微博尾巴              if((/iPad/i).test(navigator.userAgent.toLowerCase())) document.getElementById(&quot;viewport&quot;).setAttribute(&quot;content&quot;, &quot;width=1024&quot;);  body { background: #bee1f5 url(&quot;http://">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wend">
+<meta property="og:url" content="https://wendzhao.github.io/amuse/weibo/index.html">
+<meta property="og:site_name" content="Wend">
+<meta property="og:description" content="自定义微博尾巴              if((/iPad/i).test(navigator.userAgent.toLowerCase())) document.getElementById(&quot;viewport&quot;).setAttribute(&quot;content&quot;, &quot;width=1024&quot;);  body { background: #bee1f5 url(&quot;http://">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2015-06-29T08:02:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wend">
+<meta name="twitter:description" content="自定义微博尾巴              if((/iPad/i).test(navigator.userAgent.toLowerCase())) document.getElementById(&quot;viewport&quot;).setAttribute(&quot;content&quot;, &quot;width=1024&quot;);  body { background: #bee1f5 url(&quot;http://">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://wendzhao.github.io/amuse/weibo/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | Wend</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3ead386e7e220c59beb7bd3505261981";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wend</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Keep On Carving</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-amuse&tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/amuse&tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br/>娱乐&工具</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input"/>
+</form>
+
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Pwsy245ur28DrbHssr4n','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+
+</h1>
+
+<div class="post-meta">
+  
+  
+
+
+  
+  
+  <ul class="breadcrumb">
+    
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/amuse/">AMUSE</a></li>
+          
+        
+      
+    
+      
+      
+        
+          <li>WEIBO</li>
+        
+      
+    
+      
+      
+    
+  </ul>
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head><meta name="generator" content="Hexo 3.9.0">
+<meta charset="UTF-8">
+<title>自定义微博尾巴</title>
+<link rel="shortcut icon" href="http://ezkuma.com/favicon.ico">
+<!--                                                        JUST FOR FUN!!!
+   __  _______  ______  ___  __ _______________ ____  __ _________  __  ___
+  /  |/  / __ \/ __/ / / / |/ // ___/_  / __/ //_/\ \/ // ___/ __ \/  |/  /
+ / /|_/ / /_/ / _// /_/ /    // /__  / /\ \/ ,<    \  // /__/ /_/ / /|_/ / 
+/_/  /_/\____/_/  \____/_/|_(_)___/ /_/___/_/|_|   /_(_)___/\____/_/  /_/  
+-->
+<!--[if lte IE 6]><script>location.href="http://windows.microsoft.com/zh-CN/windows/upgrade-your-browser"</script><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="keywords" content="自定义微博尾巴,自定义微博来源,自定义尾巴,微博尾巴,微博来源,微博来自iphone,app_src"> 
+<meta name="description" content="自定义新浪微博尾巴"> 
+<meta name="author" content="Wend">
+<meta name="copyright" content="ezkuma.com">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=640" id="viewport">
+<script>if((/iPad/i).test(navigator.userAgent.toLowerCase())) document.getElementById("viewport").setAttribute("content", "width=1024");</script>
+<style>
+body { background: #bee1f5 url("http://img.t.sinajs.cn/t4/skin/skin048/images/mm_body_bg.jpg") repeat-x 50% 0; }
+
+#wb_title { display: none; }
+
+#wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -245px;
+    margin-left: -360px;
+    width: 720px;
+    height: 530px;
+}
+
+#wb_config {
+    margin: 0 auto;
+    width: 720px;
+    height: 40px;
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0,.3);
+    line-height: 40px;
+    font-size: 14px;
+}
+
+#wb_config label {
+    float: left;
+    width: 6em;
+    background: #eee;
+    text-align: right;
+}
+
+#wb_source,
+#wb_img {
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 288px;
+    height: 40px;
+    border: none;
+    background: #eee;
+}
+
+#wb_source { line-height: 40px; }
+#wb_source option { background: #fff; }
+
+#wb_img {
+    padding: 10px;
+    width: 244px;
+    height: 20px;
+}
+
+#wb_source:focus,
+#wb_img:focus {
+    outline: none;
+}
+
+#wb_publisher_box {
+    display: inline-block;
+    padding: 10px;
+    background: #eee;
+    box-shadow: 0 1px 5px rgba(0,0,0,.3);
+    line-height: 0;
+}
+
+
+#wb_tip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    margin-top: 1em;
+    margin-left: -3em;
+    padding: .5em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #000;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    font-size: 16px;
+}
+</style>
+
+
+<script src="js/weibo.js"></script>
+<script>var _hmt = _hmt || [];</script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<div id="wrapper">
+  <h1 align="center" id="wb_title">自定义新浪微博尾巴</h1>
+    <div align="center" id="wb_config">
+      <label for="wb_source"> 微博尾巴：</label>
+        <select id="wb_source">
+            <optgroup label="iOS">
+                <option value="4CAL6v">iOS</option>
+                <option value="9ksdit">iPhone客户端</option>
+                <option value="3G5oUM">iPhone 5s</option>
+                <option value="4ACxed">iPad客户端</option>
+            </optgroup>
+            <optgroup label="Android">
+                <option value="c66T5g">Android客户端</option>
+                <option value="461qxa">Android平板客户端</option>
+                <!--option value="4swE93">三星android智能手机</option-->
+                <option value="4d8JpP">三星Galaxy SIII</option>
+                <option value="6G7MnG">三星GALAXY S4</option>
+                <option value="2AhyC">三星Galaxy Note II</option>
+                <option value="173r1J">三星Galaxy NOTE III</option>
+                <option value="6jkz59">三星GALAXY MEGA</option>
+                <option value="14amah">HTC</option>
+                <option value="33t8Wy">HTC Phone</option>
+                <option value="2t1P0V">HTC One X</option>
+                <option value="Ywbzn">HTC Butterfly</option>
+                <option value="5gETFb">New HTC One</option>
+                <option value="6pogY0">HTC One (M8)</option>
+                <option value="40wvEZ">索尼Xperia Z1</option>
+                <option value="QzHlU">索尼Xperia Z L36h</option>
+                <option value="5X42aN">索尼Xperia SP M35h</option>
+                <option value="5HqTxp">索尼Xperia TX LT29i</option>
+                <option value="1NCPPN">索尼Xperia S LT26i</option>
+                <option value="356EzI">MOTO X</option>
+                <!--option value="6Td2Be">魅族手机</option-->
+                <option value="NzVRe">MEIZU MX</option>
+                <option value="2x24P5">MEIZU MX2</option>
+                <option value="5SqALW" selected="selected">MEIZU MX3</option>
+                <!--option value="1LsepK">SmartisanOS</option-->
+                <option value="6LFQm7">Smartisan OS</option>
+                <option value="1GEU4g">Smartisan T1</option>
+            </optgroup>
+            <optgroup label="Windows Phone">
+                <option value="4ifmDc">Windows.Phone客户端</option>
+                <option value="5ka3Zi">Nokia</option>
+                <option value="1NnhMv">诺基亚Lumia920</option>
+                <option value="1m2gTF">诺基亚Lumia1020</option>
+                <option value="elENv">诺基亚Lumia1520</option>
+            </optgroup>
+            <optgroup label="其他手机">
+                <option value="10w0NU">短信</option>
+                <option value="7E4i6P">S60客户端</option>
+                <option value="aekJEh">Kjava客户端</option>
+                <option value="22bdyb">webOS客户端</option>
+                <option value="3GtSxL">BlackBerry客户端</option>
+                <option value="6gusfu">BlackBerry 10</option>
+            </optgroup>
+            <optgroup label="桌面客户端">
+                <option value="6I573k">OS X</option>
+                <option value="8gLGL">Mac客户端</option>
+                <option value="2WqLAn">Microsoft</option>
+                <option value="4IAmCy">微博Win8客户端</option>
+            </optgroup>
+            <optgroup label="官方尾巴">
+                <option value="2Y8gAH">新浪长微博</option>
+                <option value="1sxHP2">专业版微博</option>
+                <option value="3lmdrl">媒体版微博</option>
+                <option value="5AnyuD">政府版微博</option>
+                <option value="2ue2lQ">政务直通車</option>
+                <option value="15mWgo">新浪微博4G版</option>
+            </optgroup>
+            <optgroup label="Weico">
+                <option value="8crQy">Weico.iPhone</option>
+                <option value="l4RWD">Weico.Android</option>
+                <option value="5H1fZ8">Weico.WP</option>
+                <option value="3KeSKP">WeicoPro</option>
+                <option value="3rcs3o">WeicoPro.HD</option>
+            </optgroup>
+            <optgroup label="恶搞">
+                <option value="1lzosq">乔布斯的iPhone6</option>
+                <option value="5nA9VO">Steve.Jobs_Android</option>
+                <option value="23oiDQ">Ice.Cream.Sandwich</option>
+                <option value="3e8wek">因为我爱你</option>
+                <option value="48iM0v">我要当学霸</option>
+                <option value="5pjpPn">步步糕打火机</option>
+                <option value="6Fkebg">小霸王学习机客户端</option>
+                <option value="245RVh">你若安好便是晴天</option>
+                <option value="64FIHz">怀揣着梦想的骚年们</option>
+                <option value="ADgMx">那些年我们追过的女孩</option>
+            </optgroup>
+            <optgroup label="杂。">
+                <option value="2cafLZ">Qing</option>
+                <option value="1rl7lC">LOFTER</option>
+                <option value="6zsW0q">Instagram</option>
+                <option value="2jncLL">节操</option>
+                <option value="1In7Nn">四次元</option>
+                <option value="3DeKLj">时光机</option>
+                <option value="6RxikD">联合国</option>
+                <option value="2fvBFo">南方周末</option>
+                <option value="rvD82">杜蕾斯微博</option>
+                <option value="42EgW9">人民日报微博</option>
+                <option value="2ll71r">亚马逊发布平台</option>
+            </optgroup>
+      </select>
+      <label for="wb_img">微博配图：</label>
+      <input type="text" id="wb_img" placeholder="可选">
+  </div>
+    <div>
+        <div id="wb_publisher_box"> 
+            <iframe src="http://widget.weibo.com/dialog/publish.php?button=pubilish&language=zh_cn&app_src=5SqALW" frameborder="0" width="700" height="470" id="wb_publisher"></iframe>
+            <p align="center">Copyright © 2014 <a href="http://ezkuma.com/" target="_blank" rel="noopener">Wend</a>.</p>
+        </div>
+    </div>
+</div>
+
+<div id="wb_tip">&nbsp;设置成功！</div>
+
+
+<script>
+(function(){
+var $wbPublisher = document.getElementById("wb_publisher"),
+    $wbSource = document.getElementById("wb_source"),
+    $wbImg = document.getElementById("wb_img"),
+    $wbTip = document.getElementById("wb_tip"),
+    source = "",
+    img = "";
+
+function setPublisher() {
+    $wbPublisher.src = "http://widget.weibo.com/dialog/publish.php?button=pubilish&language=zh_cn&app_src=" + source + "&default_image=" + img;
+    $wbTip.style.display = "block";
+    setTimeout(function() {
+        $wbTip.style.display = "none";
+    }, 2e3);
+};
+
+$wbSource.onchange = function() {
+    source = this.value;
+    setPublisher();
+	_hmt.push(['_trackEvent', 'kumibo', 'wb_source', this.getElementsByTagName("option")[this.selectedIndex].textContent || this.getElementsByTagName("option")[this.selectedIndex].innerText, this.value]);
+};
+
+$wbImg.onpropertychange = $wbImg.oninput = function() {
+    img = this.value;
+    setPublisher();
+};
+})();
+</script>
+
+<!--[if lt IE 9]><script src="http://cdn.staticfile.org/jquery/1.11.0/jquery.min.js"></script><![endif]-->
+<!--[if gte IE 9]><!--><script src="http://cdn.staticfile.org/jquery/2.1.0/jquery.min.js"></script><!--<![endif]-->
+<script>window.jQuery || document.write('<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"><\/script>')</script>
+
+
+
+
+
+
+<!-- ezkuma.com Baidu tongji analytics -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ead386e7e220c59beb7bd3505261981' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+</body>
+</html>
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+  
+  
+  <ul class="breadcrumb">
+    
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/amuse/">AMUSE</a></li>
+          
+        
+      
+    
+      
+      
+        
+          <li>WEIBO</li>
+        
+      
+    
+      
+      
+    
+  </ul>
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Wend"/>
+            
+              <p class="site-author-name" itemprop="name">Wend</p>
+              <div class="site-description motion-element" itemprop="description">本博客创建于2014年1月22日，起初用来发布自己的Android程序，后来逐渐扩展成一个好东西分享网站！</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#wb_title"><span class="nav-number">1.</span> <span class="nav-text">自定义新浪微博尾巴</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wend</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.0</div>
+
+
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me" class="theme-link" rel="noopener" target="_blank">Coding Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <!-- LOCAL: You can save these files to your site and update links -->
+
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"/>
+<!-- END LOCAL -->
+
+<script>
+  function renderGitment() {
+    var gitment = new Gitmint({
+      id: window.location.pathname,
+      owner: 'wendzhao',
+      repo: 'Gitment',
+      
+        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+      
+      oauth: {
+      
+      
+        client_secret: '6bc6043c1017b40a1712cf1cf916f3e6a0c7d9f5',
+      
+        client_id: '4ec6a26361b84df5c6d8'
+      }
+    });
+    gitment.render('gitment-container');
+  }
+
+  
+    renderGitment();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
